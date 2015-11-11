@@ -1,0 +1,19 @@
+<html>
+	<body>
+		<h1>Edit Article</h1>
+		<form action="{{url_for('editArticle', category_id = article.category_id, article_id = article.id)}}" method='post'>
+			<p>Title:</p>
+				<input type='text' size='50' name='title' placeholder='{{article.title}}'>
+			<p>Tagline:</p>
+				<input type='text' size='50' name='tagline' placeholder='{{article.tagline}}'>
+			<p>Text:</p>
+				<input type='text' size='200' name='text' placeholder='{{article.text}}'>
+			<p>Author:</p>
+				<input type='text' size='30' name='author' placeholder='{{article.author}}'>
+			<p>Date:</p>
+				<input type='text' size='30' name='date' placeholder='{{article.date}}'>
+			<input type='submit' value='Edit'>
+			<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}">Cancel</a>
+		</form>
+	</body>
+</html>

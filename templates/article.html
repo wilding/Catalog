@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'styles.css')}}">
+	</head>
+	<body>
+		<div class="header">
+			<a href="{{url_for('showCategories')}}"><h1>The Chronical</h1></a>
+			<h2>{{category.name}}</h2>
+			<a href="{{url_for('showLogin')}}"><h6>Login</h6></a>
+			{% for c in categories: %}
+				<a href="{{url_for('showCatalog', category_id = c.id)}}"><h3>{{c.name}}</h3></a>
+				{% endfor %}
+			<div class = 'flash'>
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					<ul>{% for message in messages %}
+						<li> <strong> {{ message }} </strong> </li>
+						{% endfor %}</ul>
+					{% endif %}
+				{% endwith %}
+			</div>
+		</div>
+		<div class = "content">
+			<span><p>{{article.title}}</p></span>
+			<span><p>{{article.tagline}}</p></span>
+			<span><p>{{article.text}}</p></span>
+			<span><p>{{article.author}}</p></span>
+			<span><p>{{article.date}}</p></span>
+		</div>
+		<div class= "actions">
+			<a href="{{url_for('editArticle', category_id = category.id, article_id = article.id)}}"><h4>Edit Article</h4></a>
+			<a href="{{url_for('deleteArticle', category_id = category.id, article_id = article.id)}}"><h4>Delete Article</h4></a>
+		</div>
+	</body>
+</html>
