@@ -5,7 +5,7 @@ app = Flask(__name__)
 #import CRUD operations
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Category, Article
+from database_setup import Base, Category, Article, User
 
 #create session and connect to database
 engine = create_engine('sqlite:///newspaper.db')
@@ -97,6 +97,12 @@ def gconnect():
   login_session['username'] = data['name']
   login_session['picture'] = data['picture']
   login_session['email'] = data['email']
+
+  # See if user exists; if it doesn't make a new one
+  user_id = getUserID(login_session['email'])
+  if not user_id:
+    user_id = createUser(login_session)
+  login_session['user_id'] = user_id
 
   output = ''
   output += '<h1>Welcome, '
@@ -194,7 +200,7 @@ def newCategory():
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	if request.method == 'POST':
-		newcategory = Category(name = request.form['name'])
+		newcategory = Category(name = request.form['name'], user_id = login_session['user_id'])
 		session.add(newcategory)
 		session.commit()
 		flash('New category created!')
@@ -238,7 +244,7 @@ def newArticle(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	if request.method == 'POST':
-		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], author = request.form['author'], date = request.form['date'], category_id = category_id)
+		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], author = request.form['author'], date = request.form['date'], category_id = category_id, user_id = category.user_id)
 		session.add(newarticle)
 		session.commit()
 		flash('New article created!')
@@ -283,6 +289,25 @@ def deleteArticle(category_id, article_id):
 		return redirect(url_for('showCatalog', category_id = category_id))
 	else:
 		return render_template('deletearticle.html', article = article)
+
+
+def createUser(login_session):
+  newUser = User(name = login_session['username'], email = login_session['email'], picture = login_session['picture'])
+  session.add(newUser)
+  session.commit()
+  user = session.query(User).filter_by(email = login_session['email']).one()
+  return user.id
+
+def getUserInfo(user_id):
+  user = session.query(User).filter_by(id = user_id).one()
+  return user
+
+def getUserID(email):
+  try:
+    user = session.query(User).filter_by(email = email).one()
+    return user.id
+  except:
+    return None
 
 # Flask setup
 if __name__ == '__main__':
