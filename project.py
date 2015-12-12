@@ -175,7 +175,10 @@ def articleJSON(category_id, article_id):
 @app.route('/category/')
 def showCategories():
 	categories = session.query(Category).all()
-	return render_template('mainmenu.html', categories = categories)
+  if 'username' not in login_session:
+    return render_template('publicmainmenu.html', categories = categories)
+  else:
+    return render_template('mainmenu.html', categories = categories)
 
 # CATEGORY MENU
 @app.route('/category/<int:category_id>/')
@@ -184,7 +187,10 @@ def showCatalog(category_id):
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
 	articles = session.query(Article).filter_by(category_id = category_id).all()
-	return render_template('categorymenu.html', categories = categories, category = category, articles = articles)
+	if login_session['user_id'] = category.user_id:
+    return render_template('categorymenu.html', categories = categories, category = category, articles = articles)
+  else:
+    return render_template('publiccategorymenu.html', categories = categories, category = category, articles = articles)
 
 # ARTICLE
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/')
@@ -192,7 +198,10 @@ def showArticle(category_id, article_id):
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
 	article = session.query(Article).filter_by(id = article_id).one()
-	return render_template('article.html', categories = categories, category = category, article = article)
+	if login_session['user_id'] = article.user_id:
+    return render_template('article.html', categories = categories, category = category, article = article)
+  else:
+    return render_template('publicarticle.html', categories = categories, category = category, article = article)
 
 # NEW CATEGORY
 @app.route('/category/new/', methods = ['GET', 'POST'])
@@ -214,6 +223,8 @@ def editCategory(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	category = session.query(Category).filter_by(id = category_id).one()
+  if category.user_id != login_session['user_id']:
+    return "<script>function myFunction() {alert('You are not authorized to edit this category.  Please create your own category in order to edit.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
 		if request.form['name']:
 			category.name = request.form['name']
@@ -230,6 +241,8 @@ def deleteCategory(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	category = session.query(Category).filter_by(id = category_id).one()
+  if category.user_id != login_session['user_id']:
+    return "<script>function myFunction() {alert('You are not authorized to delete this category.  Please create your own category in order to delete.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
 		session.delete(category)
 		session.commit()
@@ -244,7 +257,7 @@ def newArticle(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	if request.method == 'POST':
-		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], author = request.form['author'], date = request.form['date'], category_id = category_id, user_id = category.user_id)
+		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], author = request.form['author'], date = request.form['date'], category_id = category_id, user_id = login_session['user_id'])
 		session.add(newarticle)
 		session.commit()
 		flash('New article created!')
@@ -258,6 +271,8 @@ def editArticle(category_id, article_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	article = session.query(Article).filter_by(id = article_id).one()
+  if article.user_id != login_session['user_id']:
+    return "<script>function myFunction() {alert('You are not authorized to edit this article.  Please create your own article in order to edit.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
 		if request.form['title']:
 			article.title = request.form['title']
@@ -282,6 +297,8 @@ def deleteArticle(category_id, article_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	article = session.query(Article).filter_by(id = article_id).one()
+  if article.user_id != login_session['user_id']:
+    return "<script>function myFunction() {alert('You are not authorized to delete this article.  Please create your own article in order to delete.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
 		session.delete(article)
 		session.commit()
