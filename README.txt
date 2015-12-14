@@ -1,8 +1,4 @@
-**** So I meant to add style to this project but I spent the entire last day trying to fix an OAuth problem (which basically boiled down to the fact that I spelled 'access' wrong in one spot).  All the functionality should work now, but I can resubmit it in a few days and make it actually look nice with CSS if you want.
-
-
-
- to create database:
+to create database:
  1. Install Vagrant and Virtualbox if not previously installed
  2. Place the directory that contains this README into the vagrant directory
  3. Navigate to the vagrant directory in the terminal
