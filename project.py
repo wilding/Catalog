@@ -257,7 +257,7 @@ def newArticle(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	if request.method == 'POST':
-		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], author = request.form['author'], date = request.form['date'], category_id = category_id, user_id = login_session['user_id'])
+		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], author = login_session['username'], date = request.form['date'], category_id = category_id, user_id = login_session['user_id'])
 		session.add(newarticle)
 		session.commit()
 		flash('New article created!')
@@ -280,8 +280,6 @@ def editArticle(category_id, article_id):
 			article.tagline = request.form['tagline']
 		if request.form['text']:
 			article.text = request.form['text']
-		if request.form['author']:
-			article.author = request.form['author']
 		if request.form['date']:
 			article.date = request.form['date']
 		session.add(article)
