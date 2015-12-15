@@ -187,10 +187,10 @@ def showCatalog(category_id):
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
 	articles = session.query(Article).filter_by(category_id = category_id).all()
-	if login_session['user_id'] == category.user_id:
-		return render_template('categorymenu.html', categories = categories, category = category, articles = articles)
-	else:
+	if 'username' not in login_session or login_session['user_id'] != category.user_id:
 		return render_template('publiccategorymenu.html', categories = categories, category = category, articles = articles)
+	else:
+		return render_template('categorymenu.html', categories = categories, category = category, articles = articles)
 
 # ARTICLE
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/')
@@ -198,10 +198,10 @@ def showArticle(category_id, article_id):
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
 	article = session.query(Article).filter_by(id = article_id).one()
-	if login_session['user_id'] == article.user_id:
-		return render_template('article.html', categories = categories, category = category, article = article)
-	else:
+	if 'username' not in login_session or login_session['user_id'] != article.user_id:
 		return render_template('publicarticle.html', categories = categories, category = category, article = article)
+	else:
+		return render_template('article.html', categories = categories, category = category, article = article)
 
 # NEW CATEGORY
 @app.route('/category/new/', methods = ['GET', 'POST'])
