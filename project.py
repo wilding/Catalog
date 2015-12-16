@@ -192,6 +192,17 @@ def showCatalog(category_id):
 	else:
 		return render_template('categorymenu.html', categories = categories, category = category, articles = articles)
 
+# AUTHOR MENU
+@app.route('/author/<int:author_id>/')
+def showAuthor(author_id):
+  categories = session.query(Category).all()
+  author = session.query(User).filter_by(id = author_id).one()
+  articles = session.query(Article).filter_by(user_id = author_id).all()
+  if 'username' not in login_session or login_session['user_id'] != author.id:
+    return render_template('publicauthormenu.html', categories = categories, author = author, articles = articles)
+  else:
+    return render_template('authormenu.html', categories = categories, author = author, articles = articles)
+
 # ARTICLE
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/')
 def showArticle(category_id, article_id):

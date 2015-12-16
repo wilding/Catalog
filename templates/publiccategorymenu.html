@@ -25,7 +25,7 @@
 			{% for article in articles: %}
 				<a href="{{url_for('showArticle', category_id = category.id, article_id = article.id)}}"><h5>{{article.title}}</h5></a>
 				<span><p>{{article.tagline}}</p></span>
-				<span><p>{{article.author}}</p></span>
+				<a href="{{url_for('showAuthor', author_id = article.user_id)}}"><h7>{{article.author}}</h7></a>
 				<span><p>{{article.date}}</p></span>
 				{% endfor %}
 		</div>
