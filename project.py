@@ -25,6 +25,8 @@ import requests
 CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Newspaper"
 
+from datetime import datetime
+
 # LOGIN
 @app.route('/login/')
 def showLogin():
@@ -237,7 +239,7 @@ def newArticle(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	if request.method == 'POST':
-		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], author = request.form['author'], date = request.form['date'], category_id = category_id)
+		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], author = request.form['author'], date = str(datetime.now()), category_id = category_id)
 		session.add(newarticle)
 		session.commit()
 		flash('New article created!')
@@ -260,8 +262,6 @@ def editArticle(category_id, article_id):
 			article.text = request.form['text']
 		if request.form['author']:
 			article.author = request.form['author']
-		if request.form['date']:
-			article.date = request.form['date']
 		session.add(article)
 		session.commit()
 		flash("Article edited!")
