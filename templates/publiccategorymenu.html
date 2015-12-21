@@ -29,10 +29,5 @@
 				<span><p>{{article.date}}</p></span>
 				{% endfor %}
 		</div>
-		<div class= "actions">
-			<a href="{{url_for('newArticle', category_id = category.id)}}"><h4>New Article</h4></a>
-			<a href="{{url_for('editCategory', category_id = category.id)}}"><h4>Edit Category</h4></a>
-			<a href="{{url_for('deleteCategory', category_id = category.id)}}"><h4>Delete Category</h4></a>
-		</div>
 	</body>
 </html>

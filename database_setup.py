@@ -8,6 +8,32 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
+
+# Class
+class User (Base):
+
+	# Table Info
+	__tablename__ = 'user'
+	# Mappers
+	name = Column (
+		String(250), nullable = False)
+	email = Column (
+		String(250), nullable = False)
+	picture = Column (
+		String(250))
+	id = Column (
+		Integer, primary_key = True)
+	# JSON
+	@property
+	def serialize(self):
+		return {
+		'name': self.name,
+		'email': self.email,
+		'id' : self.id,
+		}
+
+
+
 # Class
 class Category (Base):
 
@@ -18,12 +44,16 @@ class Category (Base):
 		String(80), nullable = False)
 	id = Column (
 		Integer, primary_key = True)
+	user_id = Column (
+		Integer, ForeignKey('user.id'))
+	user = relationship(User)
 	# JSON
 	@property
 	def serialize(self):
 		return {
 			'name' : self.name,
 			'id' : self.id,
+			'user_id' : self.user_id,
 		}
 
 # Class
@@ -47,6 +77,9 @@ class Article (Base):
 	category_id = Column (
 		Integer, ForeignKey('category.id'))
 	category = relationship(Category)
+	user_id = Column (
+		Integer, ForeignKey('user.id'))
+	user = relationship(User)
 	# JSON
 	@property
 	def serialize(self):
@@ -58,6 +91,7 @@ class Article (Base):
 			'text' : self.text,
 			'author' : self.author,
 			'date' : self.date,
+			'user_id' : self.user_id,
 		}
 
 # Configuration

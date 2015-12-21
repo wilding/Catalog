@@ -25,7 +25,7 @@
 			<span><p>{{article.title}}</p></span>
 			<span><p>{{article.tagline}}</p></span>
 			<span><p>{{article.text}}</p></span>
-			<span><p>{{article.author}}</p></span>
+			<a href="{{url_for('showAuthor', author_id = article.user_id)}}"><h7>{{article.author}}</h7></a>
 			<span><p>{{article.date}}</p></span>
 		</div>
 		<div class= "actions">
