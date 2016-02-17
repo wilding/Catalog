@@ -73,9 +73,10 @@ header {
 
 nav {
 	width: 100%;
-	height: 3vh;
+	height: 5vh;
 	display: flex;
 	flex-wrap: wrap;
+	background-color: black;
 }
 
 .nav_item {
@@ -83,23 +84,48 @@ nav {
 	text-decoration: none;
 	font-size: 20px;
 	text-align: center;
-	color: gray;
+	color: #e9e5dc;
+	background: black;
 }
 
-.nav_item:hover {
-	color: black;
+.nav_item h3 {
+	margin-top: 4px;
 }
 
 #current_nav_item {
 	color: red;
+	border-bottom: thick solid red;
 }
 
+#Sports_nav_item:hover {
+	border-bottom: thick solid red;
+}
+
+#Weather_nav_item:hover {
+	border-bottom: thick solid orange;
+}
+
+#Economy_nav_item:hover {
+	border-bottom: thick solid yellow;
+}
+
+#Politics_nav_item:hover {
+	border-bottom: thick solid #49f770;
+}
+
+#Food_nav_item:hover {
+	border-bottom: thick solid #2daefd;
+}
+
+#Art_nav_item:hover {
+	border-bottom: thick solid #9b07a8;
+}
 
 /*      MAIN      */
 
 main {
 	width: 100%;
-	height: 85vh;
+	height: 83vh;
 	padding-top: 100px;
 }
 
@@ -133,7 +159,7 @@ footer {
 }
 
 footer a {
-	color: gray;
+	color: #e9e5dc;
 	text-decoration: none;
 	font-size: 16px;
 	text-align: center;
@@ -149,4 +175,9 @@ footer a {
 
 #article_footer a {
 	width: 50%;
+}
+
+footer h4 {
+	background-color: black;
+	padding: 5px;
 }

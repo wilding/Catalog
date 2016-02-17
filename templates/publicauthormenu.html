@@ -17,7 +17,7 @@
 		</header>
 		<nav>
 			{% for c in categories: %}
-				<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item"><h3>{{c.name}}</h3></a>
+				<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item" id="{{c.name}}_nav_item"><h3>{{c.name}}</h3></a>
 				{% endfor %}
 		</nav>
 		<main>
