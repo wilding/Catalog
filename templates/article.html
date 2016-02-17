@@ -1,16 +1,30 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'styles.css')}}">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>The Chronicle</title>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'bootstrap.min.css')}}">
+		<link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=zocial">
 	</head>
 	<body>
-		<div class="header">
-			<a href="{{url_for('showCategories')}}"><h1>The Chronical</h1></a>
-			<h2>{{category.name}}</h2>
-			<a href="{{url_for('showLogin')}}"><h6>Login</h6></a>
+		<header>
+			<section class="header_inner">
+				<a href="{{url_for('showCategories')}}" class="logo"><h1>The Chronicle</h1></a>
+				<a href="{{url_for('showLogin')}}" class="login"><button class="zocial-google">Login</button></a>
+			</section>
+		</header>
+		<nav>
 			{% for c in categories: %}
-				<a href="{{url_for('showCatalog', category_id = c.id)}}"><h3>{{c.name}}</h3></a>
+				{% if c.id == category.id %}
+					<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item" id="current_nav_item"><h3>{{c.name}}</h3></a>
+				{% else %}
+					<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item"><h3>{{c.name}}</h3></a>
+					{% endif %}
 				{% endfor %}
+		</nav>
+		<main>
 			<div class = 'flash'>
 				{% with messages = get_flashed_messages() %}
 				{% if messages %}
@@ -20,17 +34,17 @@
 					{% endif %}
 				{% endwith %}
 			</div>
-		</div>
-		<div class = "content">
-			<span><p>{{article.title}}</p></span>
-			<span><p>{{article.tagline}}</p></span>
-			<span><p>{{article.text}}</p></span>
-			<a href="{{url_for('showAuthor', author_id = article.user_id)}}"><h7>{{article.author}}</h7></a>
-			<span><p>{{article.date}}</p></span>
-		</div>
-		<div class= "actions">
+			<div class = "content">
+				<h2 class="article_content">{{article.title}}</h2>
+				<span class="article_content"><p>{{article.tagline}}</p></span>
+				<span class="article_content"><p>{{article.text}}</p></span>
+				<a href="{{url_for('showAuthor', author_id = article.user_id)}}" class="article_content"><h7>{{article.author}}</h7></a>
+				<span class="article_content"><p>{{article.date}}</p></span>
+			</div>
+		</main>
+		<footer id="article_footer">
 			<a href="{{url_for('editArticle', category_id = category.id, article_id = article.id)}}"><h4>Edit Article</h4></a>
 			<a href="{{url_for('deleteArticle', category_id = category.id, article_id = article.id)}}"><h4>Delete Article</h4></a>
-		</div>
+		</footer>
 	</body>
 </html>

@@ -103,20 +103,25 @@ main {
 	padding-top: 100px;
 }
 
-.content {
-	display: flex;
-	flex-wrap: wrap;
-}
-
 #author_header {
 	text-align: center;
 	padding-bottom: 20px;
+}
+
+.content {
+	display: flex;
+	flex-wrap: wrap;
 }
 
 main article {
 	background: white;
 	text-align: center;
 	padding: 10px;
+}
+
+.article_content {
+	width: 100%;
+	text-align: center;
 }
 
 /*     FOOTER    */
@@ -136,4 +141,8 @@ footer a {
 
 #category_footer a {
 	width: 33%;
+}
+
+#article_footer a {
+	width: 50%;
 }
