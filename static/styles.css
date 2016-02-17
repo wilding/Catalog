@@ -139,6 +139,10 @@ footer a {
 	text-align: center;
 }
 
+#main_footer a {
+	width: 100%;
+}
+
 #category_footer a {
 	width: 33%;
 }
