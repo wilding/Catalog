@@ -1,16 +1,26 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'styles.css')}}">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>The Chronicle</title>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'bootstrap.min.css')}}">
+		<link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=zocial">
 	</head>
 	<body>
-		<div class="header">
-			<a href="{{url_for('showCategories')}}"><h1>The Chronical</h1></a>
-			<h2>{{author.name}}</h2>
-			<a href="{{url_for('showLogin')}}"><h6>Login</h6></a>
+		<header>
+			<section class="header_inner">
+				<a href="{{url_for('showCategories')}}" class="logo"><h1>The Chronicle</h1></a>
+				<a href="{{url_for('showLogin')}}" class="login"><button class="zocial-google">Login</button></a>
+			</section>
+		</header>
+		<nav>
 			{% for c in categories: %}
-				<a href="{{url_for('showCatalog', category_id = c.id)}}"><h3>{{c.name}}</h3></a>
+				<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item"><h3>{{c.name}}</h3></a>
 				{% endfor %}
+		</nav>
+		<main>
 			<div class = 'flash'>
 				{% with messages = get_flashed_messages() %}
 				{% if messages %}
@@ -20,14 +30,19 @@
 					{% endif %}
 				{% endwith %}
 			</div>
-		</div>
-		<div class = "content">
+			<h2 id="author_header">{{author.name}}</h2>
+			<div class = "content">
 			{% for article in articles: %}
-				<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}"><h5>{{article.title}}</h5></a>
-				<span><p>{{article.tagline}}</p></span>
-				<span><p>{{article.author}}</p></span>
-				<span><p>{{article.date}}</p></span>
+				<article>
+					<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}"><h5>{{article.title}}</h5></a>
+					<span><p>{{article.tagline}}</p></span>
+					<span><p>{{article.author}}</p></span>
+					<span><p>{{article.date}}</p></span>
+				</article>
 				{% endfor %}
-		</div>
+			</div>
+		</main>
+		<footer>
+		</footer>
 	</body>
 </html>

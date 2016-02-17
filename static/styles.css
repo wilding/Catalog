@@ -108,6 +108,11 @@ main {
 	flex-wrap: wrap;
 }
 
+#author_header {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
 main article {
 	background: white;
 	text-align: center;
