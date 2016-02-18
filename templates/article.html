@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'bootstrap.min.css')}}">
 		<link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=zocial">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	</head>
 	<body>
 		<header>
@@ -39,7 +40,17 @@
 				<span class="article_content"><p>{{article.tagline}}</p></span>
 				<span class="article_content"><p>{{article.text}}</p></span>
 				<a href="{{url_for('showAuthor', author_id = article.user_id)}}" class="article_content"><h7>{{article.author}}</h7></a>
-				<span class="article_content"><p>{{article.date}}</p></span>
+				<br><br><time datetime="{{article.date}}" class="article_content" id="article_date"></time>
+				<script>
+					var datestring = $("#article_date").attr("datetime");
+					datestring = datestring.slice(0, 19);
+					datestring = datestring.replace(" ", "T");
+					$("#article_date").attr("datetime", datestring);
+					var d = new Date(datestring);
+					d = d.toString();
+					d = d.slice(0, 24) + " " + d.slice(34);
+					$("#article_date").append(d);
+				</script>
 			</div>
 		</main>
 		<footer id="article_footer">
