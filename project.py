@@ -141,7 +141,8 @@ def gdisconnect():
 
 		response = make_response(json.dumps('Successfully disconnected.'), 200)
 		response.headers['Content-Type'] = 'application/json'
-		return response
+		flash("Successfully logged out")
+		return redirect(url_for('showCategories'))
 	else:
 		# for whatever reason, the given token was invalid
 		response = make_response(json.dumps('Failed to revoke token for given user.'), 400)
