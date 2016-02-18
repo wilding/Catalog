@@ -31,7 +31,10 @@
 				{% endwith %}
 		</div>
 		<main>
-			<h2 id="author_header">{{author.name}}</h2>
+			<div class="author_header">
+				<img src="{{author.picture}}" id="author_header_image">
+				<h2 id="author_header_name">{{author.name}}</h2>
+			</div>
 			<div class = "content">
 			{% for article in articles: %}
 				<article>
