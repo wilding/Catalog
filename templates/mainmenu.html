@@ -7,13 +7,24 @@
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'bootstrap.min.css')}}">
 		<link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=zocial">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	</head>
 	<body>
 		<header>
 			<section class="header_inner">
 				<a href="{{url_for('showCategories')}}" class="logo"><h1>The Chronicle</h1></a>
 				<div class="profile_info">
-					<a href="{{url_for('showAuthor', author_id = profile_id)}}"><img src="{{profile_pic}}" class="profile_pic"></a>
+					<div class="dropdown_menu">
+						<a href="{{url_for('showAuthor', author_id = profile_id)}}">Author Menu</a><br><br>
+						<a href="{{url_for('gdisconnect')}}">Logout</a>
+					</div>
+					<img src="{{profile_pic}}" class="profile_pic">
+					<script type="text/javascript">
+						$(".profile_pic").on("click", function() {
+							console.log("profile pic was clicked");
+							$(".dropdown_menu").toggleClass('show_dropdown');
+						});
+					</script>
 				</div>
 			</section>
 		</header>

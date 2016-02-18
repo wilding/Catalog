@@ -85,6 +85,23 @@ header {
 	padding-top: 5px;
 }
 
+.dropdown_menu {
+	text-align: right;
+	padding-top: 12px;
+	padding-right: 10px;
+	display: none;
+}
+
+.dropdown_menu a {
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+}
+
+.show_dropdown {
+	display: block;
+}
+
 /*     NAV     */
 
 nav {
