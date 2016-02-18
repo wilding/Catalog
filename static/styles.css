@@ -154,11 +154,20 @@ nav {
 	border-bottom: thick solid #9b07a8;
 }
 
+/*      FLASH      */
+
+.flash {
+	width: 100%;
+	height: 5vh;
+	text-align: center;
+	padding-top: 20px;
+}
+
 /*      MAIN      */
 
 main {
 	width: 100%;
-	height: 83vh;
+	height: 78vh;
 	padding-top: 100px;
 }
 

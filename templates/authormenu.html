@@ -33,16 +33,16 @@
 				<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item" id="{{c.name}}_nav_item"><h3>{{c.name}}</h3></a>
 				{% endfor %}
 		</nav>
-		<main>
-			<div class = 'flash'>
-				{% with messages = get_flashed_messages() %}
+		<div class = 'flash'>
+			{% with messages = get_flashed_messages() %}
 				{% if messages %}
-					<ul>{% for message in messages %}
-						<li> <strong> {{ message }} </strong> </li>
-						{% endfor %}</ul>
+					{% for message in messages %}
+						<strong> {{ message }} </strong>
+						{% endfor %}
 					{% endif %}
 				{% endwith %}
-			</div>
+		</div>
+		<main>
 			<h2 id="author_header">{{author.name}}</h2>
 			<div class = "content">
 			{% for article in articles: %}
