@@ -180,6 +180,10 @@ main {
 	flex-wrap: wrap;
 }
 
+#category_menu_content {
+	padding-top: 20px;
+}
+
 main article {
 	background: white;
 	text-align: center;
