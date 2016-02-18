@@ -178,7 +178,7 @@ def showCategories():
 	if 'username' not in login_session:
 		return render_template('publicmainmenu.html', categories = categories)
 	else:
-		return render_template('mainmenu.html', categories = categories)
+		return render_template('mainmenu.html', categories = categories, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # CATEGORY MENU
 @app.route('/category/<int:category_id>/')
@@ -190,7 +190,7 @@ def showCatalog(category_id):
 	if 'username' not in login_session or login_session['user_id'] != category.user_id:
 		return render_template('publiccategorymenu.html', categories = categories, category = category, articles = articles)
 	else:
-		return render_template('categorymenu.html', categories = categories, category = category, articles = articles)
+		return render_template('categorymenu.html', categories = categories, category = category, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # AUTHOR MENU
 @app.route('/author/<int:author_id>/')
@@ -201,7 +201,7 @@ def showAuthor(author_id):
 	if 'username' not in login_session or login_session['user_id'] != author.id:
 		return render_template('publicauthormenu.html', categories = categories, author = author, articles = articles)
 	else:
-		return render_template('authormenu.html', categories = categories, author = author, articles = articles)
+		return render_template('authormenu.html', categories = categories, author = author, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # ARTICLE
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/')
@@ -212,7 +212,7 @@ def showArticle(category_id, article_id):
 	if 'username' not in login_session or login_session['user_id'] != article.user_id:
 		return render_template('publicarticle.html', categories = categories, category = category, article = article)
 	else:
-		return render_template('article.html', categories = categories, category = category, article = article)
+		return render_template('article.html', categories = categories, category = category, article = article, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # NEW CATEGORY
 @app.route('/category/new/', methods = ['GET', 'POST'])

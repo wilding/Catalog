@@ -12,7 +12,9 @@
 		<header>
 			<section class="header_inner">
 				<a href="{{url_for('showCategories')}}" class="logo"><h1>The Chronicle</h1></a>
-				<a href="{{url_for('showLogin')}}" class="login"><button class="zocial-google">Login</button></a>
+				<div class="profile_info">
+					<a href="{{url_for('showAuthor', author_id = profile_id)}}"><img src="{{profile_pic}}" class="profile_pic"></a>
+				</div>
 			</section>
 		</header>
 		<nav>
