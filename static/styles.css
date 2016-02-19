@@ -131,10 +131,39 @@ nav {
 	margin-top: 4px;
 }
 
-#current_nav_item {
+/*  current nav item  */
+
+#Sports_nav_item_current {
 	color: red;
 	border-bottom: thick solid red;
 }
+
+#Weather_nav_item_current {
+	color: orange;
+	border-bottom: thick solid orange;
+}
+
+#Economy_nav_item_current {
+	color: yellow;
+	border-bottom: thick solid yellow;
+}
+
+#Politics_nav_item_current {
+	color: #49f770;
+	border-bottom: thick solid #49f770;
+}
+
+#Food_nav_item_current {
+	color: #2daefd;
+	border-bottom: thick solid #2daefd;
+}
+
+#Art_nav_item_current {
+	color: #9b07a8;
+	border-bottom: thick solid #9b07a8;
+}
+
+/*  hover nav item  */
 
 #Sports_nav_item:hover {
 	border-bottom: thick solid red;
