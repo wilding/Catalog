@@ -30,6 +30,26 @@
 				{% endwith %}
 		</div>
 		<main>
+			<div class = "content" id="category_menu_content">
+			{% for article in articles: %}
+				<article>
+					<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}"><h5>{{article.title}}</h5></a>
+					<span><p>{{article.tagline}}</p></span>
+					<a href="{{url_for('showAuthor', author_id = article.user_id)}}"><h7>{{article.author}}</h7></a>
+					<br><br><time datetime="{{article.date}}" id="article_date"></time>
+				</article>
+				<script>
+					var datestring = $("#article_date").attr("datetime");
+					datestring = datestring.slice(0, 19);
+					datestring = datestring.replace(" ", "T");
+					$("#article_date").attr("datetime", datestring);
+					var d = new Date(datestring);
+					d = d.toString();
+					d = d.slice(0, 24) + " " + d.slice(34);
+					$("#article_date").append(d);
+				</script>
+				{% endfor %}
+			</div>
 		</main>
 		<footer>
 		</footer>

@@ -176,10 +176,11 @@ def articleJSON(category_id, article_id):
 @app.route('/category/')
 def showCategories():
 	categories = session.query(Category).all()
+	articles = session.query(Article).order_by(Article.date).all()
 	if 'username' not in login_session:
-		return render_template('publicmainmenu.html', categories = categories)
+		return render_template('publicmainmenu.html', categories = categories, articles = articles)
 	else:
-		return render_template('mainmenu.html', categories = categories, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
+		return render_template('mainmenu.html', categories = categories, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # CATEGORY MENU
 @app.route('/category/<int:category_id>/')
