@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	display: flex;
 	flex-wrap: wrap;
@@ -9,23 +13,7 @@ body {
 	margin-left: auto;
 }
 
-* {
-	box-sizing: border-box;
-}
-
-@font-face {
-	font-family: canterbury;
-	src: url(./Canterbury.ttf);
-}
-
-[class*="zocial-"]:before {
-  color: white;
-  display: inline-block;
-  font-family: 'zocial', sans-serif;
-  width: 2em;
-}
-
-/*    HEADER   */
+/*////    HEADER   /////////////////////*/
 
 header {
 	width: 100%;
@@ -39,6 +27,13 @@ header {
 	flex-wrap: wrap;
 }
 
+/*  logo  */
+
+@font-face {
+	font-family: canterbury;
+	src: url(./Canterbury.ttf);
+}
+
 .logo {
 	width: 70%;
 	font-family: canterbury;
@@ -50,6 +45,15 @@ header {
 .logo h1 {
 	margin-top: 10px;
 	margin-bottom: 0px;
+}
+
+/*  login public  */
+
+[class*="zocial-"]:before {
+  color: white;
+  display: inline-block;
+  font-family: 'zocial', sans-serif;
+  width: 2em;
 }
 
 .login {
@@ -69,6 +73,8 @@ header {
 	height: 40px;
 	border: none;
 }
+
+/*  login private  */
 
 .profile_info {
 	width: 30%;
@@ -102,7 +108,7 @@ header {
 	display: block;
 }
 
-/*     NAV     */
+/*////    NAV   /////////////////////*/
 
 nav {
 	width: 100%;
@@ -154,7 +160,7 @@ nav {
 	border-bottom: thick solid #9b07a8;
 }
 
-/*      FLASH      */
+/*////    FLASH   /////////////////////*/
 
 .flash {
 	width: 100%;
@@ -163,12 +169,14 @@ nav {
 	padding-top: 20px;
 }
 
-/*      MAIN      */
+/*////    MAIN   /////////////////////*/
 
 main {
 	width: 100%;
 	height: 78vh;
 }
+
+/*  author header  */
 
 .author_header {
 	display: flex;
@@ -190,6 +198,8 @@ main {
 	padding-left: 10px;
 }
 
+/*  articles  */
+
 .content {
 	display: flex;
 	flex-wrap: wrap;
@@ -210,7 +220,7 @@ main article {
 	text-align: center;
 }
 
-/*     FOOTER    */
+/*////    FOOTER   /////////////////////*/
 
 footer {
 	width: 100%;
