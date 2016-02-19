@@ -198,22 +198,83 @@ main {
 	padding-left: 10px;
 }
 
-/*  articles  */
+/*  content  */
 
 .content {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 #category_menu_content {
 	padding-top: 20px;
 }
 
+/*  content cards  */
+
 main article {
 	background: white;
-	text-align: center;
-	padding: 10px;
+	height: 17em;
+	width: 23%;
+	padding: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
 }
+
+#Sports_card {
+	border-bottom: 8px solid red;
+}
+
+#Weather_card {
+	border-bottom: 8px solid orange;
+}
+
+#Economy_card {
+	border-bottom: 8px solid yellow;
+}
+
+#Politics_card {
+	border-bottom: 8px solid #49f770;
+}
+
+#Food_card {
+	border-bottom: 8px solid #2daefd;
+}
+
+#Art_card {
+	border-bottom: 8px solid #9b07a8;
+}
+
+.article_title {
+	width: 100%;
+	margin-top: 0px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.article_tagline {
+	width: 100%;
+}
+
+.article_tagline p {
+	margin: 0px;
+}
+
+.article_author {
+	width: 50%;
+	align-self: flex-end;
+	font-size: 14px;
+}
+
+.article_date {
+	width: 50%;
+	align-self: flex-end;
+	text-align: right;
+	font-size: 14px;
+}
+
+/*  full article  */
 
 .article_content {
 	width: 100%;
