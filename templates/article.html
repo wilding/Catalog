@@ -49,6 +49,7 @@
 		<main>
 			<div class = "content">
 				<h2 class="article_content">{{article.title}}</h2>
+				<img src="{{article.picture}}">
 				<span class="article_content"><p>{{article.tagline}}</p></span>
 				<span class="article_content"><p>{{article.text}}</p></span>
 				<a href="{{url_for('showAuthor', author_id = article.user_id)}}" class="article_content"><h7>{{article.author}}</h7></a>

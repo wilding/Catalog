@@ -74,6 +74,8 @@ class Article (Base):
 		String(80))
 	date = Column (
 		String(25))
+	picture = Column (
+		String(250))
 	category_id = Column (
 		Integer, ForeignKey('category.id'))
 	category = relationship(Category)

@@ -12,6 +12,8 @@
 				<input type='text' size='50' name='tagline' placeholder='{{article.tagline}}'>
 			<p>Text:</p>
 				<input type='text' size='200' name='text' placeholder='{{article.text}}'>
+			<p>Picture URL:</p>
+				<input type='text' size='200' name='picture' placeholder='{{article.picture}}'>
 			<input type='submit' value='Edit'>
 			<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}">Cancel</a>
 		</form>
