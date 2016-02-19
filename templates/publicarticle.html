@@ -19,7 +19,7 @@
 		<nav>
 			{% for c in categories: %}
 				{% if c.id == category.id %}
-					<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item" id="current_nav_item"><h3>{{c.name}}</h3></a>
+					<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item" id="{{c.name}}_nav_item_current"><h3>{{c.name}}</h3></a>
 				{% else %}
 					<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item" id="{{c.name}}_nav_item"><h3>{{c.name}}</h3></a>
 					{% endif %}
