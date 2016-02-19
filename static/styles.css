@@ -287,6 +287,10 @@ main article {
 	font-size: 14px;
 }
 
+#authormenu_article_date {
+	width: 100%;
+}
+
 /*  full article  */
 
 .article_content {
