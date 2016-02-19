@@ -216,7 +216,9 @@ main article {
 	background: white;
 	height: 17em;
 	width: 23%;
-	padding: 5px;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 30px;
@@ -251,10 +253,13 @@ main article {
 	margin-top: 0px;
 	font-size: 18px;
 	font-weight: bold;
+	text-decoration: none;
+	color: black;
 }
 
 .article_tagline {
 	width: 100%;
+	color: gray;
 }
 
 .article_tagline p {
@@ -262,13 +267,21 @@ main article {
 }
 
 .article_author {
-	width: 50%;
+	width: 10%;
 	align-self: flex-end;
 	font-size: 14px;
 }
 
+.article_author img {
+	height: 2.5em;
+	width: 2.5em;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+}
+
 .article_date {
-	width: 50%;
+	width: 90%;
 	align-self: flex-end;
 	text-align: right;
 	font-size: 14px;
