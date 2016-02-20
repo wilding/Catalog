@@ -27,13 +27,6 @@ APPLICATION_NAME = "Newspaper"
 
 from datetime import datetime
 
-# LOGIN
-@app.route('/login/')
-def showLogin():
-	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
-	login_session['state'] = state
-	return render_template('login.html', STATE = state)
-
 # CONNECT
 @app.route('/gconnect/', methods = ['POST'])
 def gconnect():
@@ -106,13 +99,7 @@ def gconnect():
 		user_id = createUser(login_session)
 	login_session['user_id'] = user_id
 
-	output = ''
-	output += '<h1>Welcome, '
-	output += login_session['username']
-	output += '!</h1>'
-	output += '<img src="'
-	output += login_session['picture']
-	output += ' " style="width: 300px; height: 300px; border-radius: 150px; -webkit-border-radius: 150px; -moz-border-radius: 150px;">'
+	output = '<strong>Logging in as '+login_session['username']+'...</strong>'
 	flash("you are now logged in as %s" % login_session['username'])
 	print "done!"
 	return output
@@ -175,10 +162,12 @@ def articleJSON(category_id, article_id):
 @app.route('/categories/')
 @app.route('/category/')
 def showCategories():
+	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+	login_session['state'] = state
 	categories = session.query(Category).all()
 	articles = session.query(Article).order_by(Article.date).all()
 	if 'username' not in login_session:
-		return render_template('publicmainmenu.html', categories = categories, articles = articles)
+		return render_template('publicmainmenu.html', categories = categories, articles = articles, STATE = state)
 	else:
 		return render_template('mainmenu.html', categories = categories, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
@@ -186,33 +175,39 @@ def showCategories():
 @app.route('/category/<int:category_id>/')
 @app.route('/category/<int:category_id>/catalog/')
 def showCatalog(category_id):
+	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+	login_session['state'] = state
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
 	articles = session.query(Article).filter_by(category_id = category_id).all()
 	if 'username' not in login_session or login_session['user_id'] != category.user_id:
-		return render_template('publiccategorymenu.html', categories = categories, category = category, articles = articles)
+		return render_template('publiccategorymenu.html', categories = categories, category = category, articles = articles, STATE = state)
 	else:
 		return render_template('categorymenu.html', categories = categories, category = category, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # AUTHOR MENU
 @app.route('/author/<int:author_id>/')
 def showAuthor(author_id):
+	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+	login_session['state'] = state
 	categories = session.query(Category).all()
 	author = session.query(User).filter_by(id = author_id).one()
 	articles = session.query(Article).filter_by(user_id = author_id).all()
 	if 'username' not in login_session or login_session['user_id'] != author.id:
-		return render_template('publicauthormenu.html', categories = categories, author = author, articles = articles)
+		return render_template('publicauthormenu.html', categories = categories, author = author, articles = articles, STATE = state)
 	else:
 		return render_template('authormenu.html', categories = categories, author = author, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # ARTICLE
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/')
 def showArticle(category_id, article_id):
+	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+	login_session['state'] = state
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
 	article = session.query(Article).filter_by(id = article_id).one()
 	if 'username' not in login_session or login_session['user_id'] != article.user_id:
-		return render_template('publicarticle.html', categories = categories, category = category, article = article)
+		return render_template('publicarticle.html', categories = categories, category = category, article = article, STATE = state)
 	else:
 		return render_template('article.html', categories = categories, category = category, article = article, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 

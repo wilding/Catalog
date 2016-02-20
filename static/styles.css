@@ -49,29 +49,11 @@ header {
 
 /*  login public  */
 
-[class*="zocial-"]:before {
-  color: white;
-  display: inline-block;
-  font-family: 'zocial', sans-serif;
-  width: 2em;
-}
-
 .login {
 	width: 30%;
-	padding-top: 30px;
-}
-
-.login button {
-	float: right;
-	font-size: 16px;
-	color: white;
-	background-color: #4285F4;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	width: 130px;
-	height: 40px;
-	border: none;
+	padding-top: 45px;
+	display: flex;
+	justify-content: flex-end;
 }
 
 /*  login private  */

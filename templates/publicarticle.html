@@ -6,14 +6,57 @@
 		<title>The Chronicle</title>
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'bootstrap.min.css')}}">
-		<link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=zocial">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
 	</head>
 	<body>
 		<header>
 			<section class="header_inner">
 				<a href="{{url_for('showCategories')}}" class="logo"><h1>The Chronicle</h1></a>
-				<a href="{{url_for('showLogin')}}" class="login"><button class="zocial-google">Login</button></a>
+				<div class="login" id="signinButton">
+					<span class="g-signin"
+						data-scope="openid email"
+						data-clientid="578890011813-qd932u6n0bint1hnqgosn8e2qjrg1ahb.apps.googleusercontent.com"
+						data-redirecturi="postmessage"
+						data-accesstype="offline"
+						data-cookiepolicy="single_host_origin"
+						data-callback="signInCallback"
+						data-approvalprompt="force">
+					</span>
+				</div>
+				<!-- handle response that google api server sends to client
+						successful response
+						one time code to authorize server
+						access token client can use to make api calls in browser -->
+				<script>
+					function signInCallback(authResult) {
+						if (authResult['code']) {
+							// Hide the sign in button now that the user is authorized
+							$('#signinButton').attr('style', 'display: none');
+							// Send the one-time-use code to the server.  If the server responds, write a 'login successful' message to the webpage and then redirect back to the main restaurants page
+							$.ajax({
+								type: 'POST',
+								url: '/gconnect/?state={{STATE}}',
+								processData: false,
+								contentType: 'application/octet-stream; charset=utf-8',
+								data: authResult['code'],
+								success: function(result) {
+									if (result) {
+										$('.flash').append(result);
+										setTimeout(function() {
+											window.location.href = "/category/{{article.category.id}}/catalog/{{article.id}}/";
+										}, 4000);
+								} else if (authResult['error']) {
+									console.log('There was an error: ' + authResult['error']);
+								}
+								}
+							});
+						}
+						else {
+							$('.flash').append('<strong>Failed to make a server-side call.  Check your configuration and console.</strong>');
+						}
+					}
+				</script>
 			</section>
 		</header>
 		<nav>
