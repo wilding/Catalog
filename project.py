@@ -158,9 +158,9 @@ def articleJSON(category_id, article_id):
 	return jsonify(Article=[article.serialize])
 
 # HOMEPAGE
-@app.route('/')
 @app.route('/categories/')
 @app.route('/category/')
+@app.route('/')
 def showCategories():
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 	login_session['state'] = state
@@ -172,8 +172,8 @@ def showCategories():
 		return render_template('mainmenu.html', categories = categories, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # CATEGORY MENU
-@app.route('/category/<int:category_id>/')
 @app.route('/category/<int:category_id>/catalog/')
+@app.route('/category/<int:category_id>/')
 def showCatalog(category_id):
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 	login_session['state'] = state
