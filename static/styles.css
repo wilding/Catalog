@@ -221,6 +221,10 @@ main {
 	padding-top: 20px;
 }
 
+#article_content {
+	justify-content: center;
+}
+
 /*  content cards  */
 
 main article {
