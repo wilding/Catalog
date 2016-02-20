@@ -227,6 +227,11 @@ main {
 	justify-content: center;
 }
 
+#article_content img {
+	max-width: 100%;
+	height: auto;
+}
+
 /*  content cards  */
 
 main article {
