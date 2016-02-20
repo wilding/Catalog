@@ -260,28 +260,49 @@ main article {
 	border-bottom: 8px solid #9b07a8;
 }
 
+
+.article_overlay {
+	width: 100%;
+	height: fit-content;
+	margin-bottom: 5px;
+	background-color: #000;
+  	background-color: rgba(0, 0, 0, 0.7);
+  	display: flex;
+  	align-self: flex-end;
+}
+
 .article_title {
 	width: 100%;
-	margin-top: 0px;
+	text-decoration: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.article_title h3 {
 	font-size: 18px;
 	font-weight: bold;
 	text-decoration: none;
-	color: black;
+	color: #e9e5dc;
+	margin: 5px;
+	width: inherit;
 }
 
-.article_tagline {
+.article_date {
 	width: 100%;
-	color: gray;
-}
-
-.article_tagline p {
-	margin: 0px;
+	margin-left: 5px;
+	font-size: 14px;
+	color: #e9e5dc;
+	width: 100%;
 }
 
 .article_author {
-	width: 10%;
-	align-self: flex-end;
+	width: 15%;
 	font-size: 14px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	padding-bottom: 5px;
+	margin-right: 5px;
 }
 
 .article_author img {
@@ -290,14 +311,11 @@ main article {
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	border-radius: 50px;
+	padding: 0px;
+	margin-right: 0px;
 }
 
-.article_date {
-	width: 90%;
-	align-self: flex-end;
-	text-align: right;
-	font-size: 14px;
-}
+
 
 #authormenu_article_date {
 	width: 100%;
