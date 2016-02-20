@@ -103,6 +103,7 @@ nav {
 
 .nav_item {
 	width: 16.6666%;
+	height: inherit;
 	text-decoration: none;
 	font-size: 20px;
 	text-align: center;
@@ -111,7 +112,7 @@ nav {
 }
 
 .nav_item h3 {
-	margin: 0px;
+	margin: 3px;
 }
 
 /*  current nav item  */
@@ -401,6 +402,10 @@ footer h4 {
 
 	.nav_item {
 		font-size: 15px;
+	}
+
+	.nav_item h3 {
+		margin-top: 8px;
 	}
 }
 
