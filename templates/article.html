@@ -45,14 +45,23 @@
 					{% endif %}
 				{% endwith %}
 		</div>
-		<main>
-			<div class = "content" id="article_content">
-				<h2 class="article_content">{{article.title}}</h2>
-				<img src="{{article.picture}}">
-				<span class="article_content"><p>{{article.tagline}}</p></span>
-				<span class="article_content"><p>{{article.text}}</p></span>
-				<a href="{{url_for('showAuthor', author_id = article.user_id)}}" class="article_content"><h7>{{article.author}}</h7></a>
-				<br><br><time datetime="{{article.date}}" class="article_content" id="article_date"></time>
+		<main class="full_article_main">
+			<div class = "content" id="full_article_content">
+				<div class="full_article_metadata">
+					<h2 class="full_article_title">{{article.title}}</h2>
+					<a href="{{url_for('showAuthor', author_id = article.user_id)}}" class="full_article_author">
+						<img src="{{article.user.picture}}" class="full_article_userpic">
+						<h7 class="full_article_username">{{article.author}}</h7>
+					</a>
+					<time datetime="{{article.date}}" class="full_article_date" id="article_date"></time>
+				</div>
+				<div class="full_article_data">
+					<p class="full_article_text">{{article.text}}</p>
+					<figure class="full_article_figure">
+						<img src="{{article.picture}}" class="full_article_picture">
+						<figcaption class="full_article_tagline">{{article.tagline}}</figcaption>
+					</figure>
+				</div>
 				<script>
 					var datestring = $("#article_date").attr("datetime");
 					datestring = datestring.slice(0, 19);
