@@ -419,6 +419,11 @@ footer {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
+	height: fit-content;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: black;
+	align-items: center;
 }
 
 footer a {
@@ -441,8 +446,8 @@ footer a {
 }
 
 footer h4 {
-	background-color: black;
 	padding: 5px;
+	margin: 0px;
 }
 
 /*////    MEDIA QUERIES   /////////////////////*/
