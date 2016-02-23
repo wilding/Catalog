@@ -450,6 +450,92 @@ footer h4 {
 	margin: 0px;
 }
 
+
+/*////    NEW ARTICLE   /////////////////////*/
+
+.form_title {
+	width: 100%;
+	text-align: center;
+	background-color: black;
+	color: #e9e5dc;
+}
+
+.input_form {
+    margin:10px auto;
+    max-width: 100%;
+    padding-left: 0px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.input_form li {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.input_form label {
+    margin-bottom: 3px;
+    display:block;
+    font-weight: bold;
+}
+
+.input_form input[type=text], textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #BEBEBE;
+    padding: 7px;
+    margin: 0px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+}
+
+.input_form input[type=text]:focus, textarea:focus {
+    -moz-box-shadow: 0 0 8px gray;
+    -webkit-box-shadow: 0 0 8px gray;
+    box-shadow: 0 0 8px gray;
+    border: 1px solid gray;
+}
+
+.input_form .field-textarea{
+    height: 200px;
+    width: 100%;
+}
+
+.input_form input[type=submit], .input_form input[type=button]{
+    background: black;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.input_form input[type=submit]:hover, .input_form input[type=button]:hover{
+    background: #D50F25;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+.form_cancel {
+	margin-left: 10px;
+	background: black;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font: 11px BlinkMacSystemFont;
+}
+
+.form_cancel:hover {
+	background: #D50F25;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
 /*////    MEDIA QUERIES   /////////////////////*/
 
 @media screen and (max-width: 1215px) {
