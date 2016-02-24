@@ -481,12 +481,16 @@ footer h4 {
 
 /*////    CREATE/EDIT/DELETE FORMS   /////////////////////*/
 
+/*  title  */
+
 .form_title {
 	width: 100%;
 	text-align: center;
 	background-color: black;
 	color: #e9e5dc;
 }
+
+/*  form  */
 
 .input_form {
     margin:10px auto;
@@ -506,6 +510,11 @@ footer h4 {
     font-weight: bold;
 }
 
+.input_form .field-textarea {
+    height: 200px;
+    width: 100%;
+}
+
 .input_form input[type=text], textarea {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -520,6 +529,8 @@ footer h4 {
     outline: none;
 }
 
+/*  highlight inputs when selected  */
+
 .input_form input[type=text]:focus, textarea:focus {
     -moz-box-shadow: 0 0 8px gray;
     -webkit-box-shadow: 0 0 8px gray;
@@ -527,10 +538,7 @@ footer h4 {
     border: 1px solid gray;
 }
 
-.input_form .field-textarea{
-    height: 200px;
-    width: 100%;
-}
+/*  submit button  */
 
 .input_form input[type=submit], .input_form input[type=button]{
     background: black;
@@ -540,12 +548,16 @@ footer h4 {
     cursor: pointer;
     margin-top: 10px;
 }
+
 .input_form input[type=submit]:hover, .input_form input[type=button]:hover{
     background: #D50F25;
     box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
 }
+
+/*  cancel button  */
+
 .form_cancel {
 	margin-left: 10px;
 	background: black;
