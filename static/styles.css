@@ -364,6 +364,7 @@ main article {
 	margin-top: 5px;
 	height: min-content;
 	font-family: "calisto mt", "times", serif;
+	text-align: center;
 }
 
 .full_article_author {
@@ -372,6 +373,7 @@ main article {
 	text-decoration: none;
 	justify-content: center;
 	width: 25%;
+	margin-right: 10px;
 }
 
 .full_article_userpic {
@@ -385,12 +387,14 @@ main article {
 .full_article_username {
 	margin-left: 5px;
 	color: gray;
+	text-align: left;
 }
 
 .full_article_date {
 	align-self: center;
 	width: 25%;
 	color: gray;
+	margin-left: 10px;
 }
 
 .full_article_data {
@@ -412,6 +416,7 @@ main article {
 	color: gray;
 	text-align: center;
 	font-size: 18px;
+	margin-bottom: 20px;
 }
 
 .full_article_text {
@@ -564,7 +569,6 @@ footer h4 {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
-
 	.header_inner {
 		padding-right: 15px;
 		padding-left: 15px;
@@ -582,7 +586,6 @@ footer h4 {
 		font-size: 35pt;
 		align-self: flex-end;
 	}
-
 	.profile_pic {
 		height: 3em;
 		width: 3em;
@@ -590,13 +593,28 @@ footer h4 {
 		align-self: flex-end;
 		margin-bottom: 10px;
 	}
-
 	.nav_item {
 		font-size: 15px;
 	}
-
 	.nav_item h3 {
 		margin-top: 8px;
+	}
+}
+
+@media screen and (max-width: 625px) {
+	.full_article_figure {
+		width: 80%;
+	}
+	.full_article_text {
+		width: 100%;
+		padding-right: 0px;
+		order: 2;
+	}
+	.full_article_data{
+		justify-content: center;
+	}
+	.full_article_title {
+		font-size: 30px;
 	}
 }
 
@@ -611,9 +629,35 @@ footer h4 {
 		width: 100%;
 		margin-bottom: 0px;
 	}
-
 	main {
 		padding-left: 0px;
 		padding-right: 0px;
+	}
+	#full_article_content {
+		width: 100%;
+	}
+	.full_article_text {
+		width: 93%;
+	}
+	.full_article_figure {
+		width: 100%;
+	}
+	.full_article_tagline {
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	.full_article_title {
+		font-size: 22px;
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	.full_article_metadata {
+		font-size: 12px;
+		margin-bottom: 5px;
+	}
+	.flash {
+		padding-top: 5px;
+		height: 3vh;
+		font-size: 14px;
 	}
 }

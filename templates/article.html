@@ -48,8 +48,8 @@
 		</div>
 		<main class="full_article_main">
 			<div class = "content" id="full_article_content">
+				<h2 class="full_article_title">{{article.title}}</h2>
 				<div class="full_article_metadata">
-					<h2 class="full_article_title">{{article.title}}</h2>
 					<a href="{{url_for('showAuthor', author_id = article.user_id)}}" class="full_article_author">
 						<img src="{{article.user.picture}}" class="full_article_userpic">
 						<h7 class="full_article_username">{{article.author}}</h7>
@@ -70,7 +70,7 @@
 					$("#article_date").attr("datetime", datestring);
 					var d = new Date(datestring);
 					d = d.toString();
-					d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + " " + d.slice(35);
+					d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + "&nbsp;" + d.slice(35);
 					$("#article_date").append(d);
 				</script>
 			</div>

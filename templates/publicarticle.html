@@ -80,8 +80,8 @@
 		</div>
 		<main class="full_article_main">
 			<div class = "content" id="full_article_content">
+				<h2 class="full_article_title">{{article.title}}</h2>
 				<div class="full_article_metadata">
-					<h2 class="full_article_title">{{article.title}}</h2>
 					<a href="{{url_for('showAuthor', author_id = article.user_id)}}" class="full_article_author">
 						<img src="{{article.user.picture}}" class="full_article_userpic">
 						<h7 class="full_article_username">{{article.author}}</h7>
