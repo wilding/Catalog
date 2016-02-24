@@ -200,6 +200,7 @@ main {
 	display: flex;
 	justify-content: center;
 	padding-bottom: 10px;
+	margin-top: 5px;
 }
 
 #author_header_image {
