@@ -93,7 +93,7 @@
 							$(".article_date").attr("datetime", datestring);
 							var d = new Date(datestring);
 							d = d.toString();
-							d = d.slice(0, 24) + " " + d.slice(34);
+							d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + " " + d.slice(35);
 							$(".article_date").text(d);
 						</script>
 					</div>
