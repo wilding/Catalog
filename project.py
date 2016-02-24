@@ -99,7 +99,7 @@ def gconnect():
 		user_id = createUser(login_session)
 	login_session['user_id'] = user_id
 
-	output = '<strong>Logging in as '+login_session['username']+'...</strong>'
+	output = '<i class="fa fa-spinner fa-spin"></i><strong> Logging in as ' + login_session['username'] + '</strong>'
 	flash("you are now logged in as %s" % login_session['username'])
 	print "done!"
 	return output
