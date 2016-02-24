@@ -428,7 +428,7 @@ footer {
 	flex-wrap: wrap;
 	height: fit-content;
 	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	background-color: black;
 	align-items: center;
 }
@@ -455,6 +455,18 @@ footer a {
 footer h4 {
 	padding: 5px;
 	margin: 0px;
+}
+
+.github_source {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: center;
+}
+
+.github_source a {
+	text-decoration: none;
+	color: black;
 }
 
 
