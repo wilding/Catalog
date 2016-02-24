@@ -77,7 +77,7 @@ header {
 
 .dropdown_menu {
 	text-align: right;
-	padding-top: 12px;
+	padding-top: 18px;
 	padding-right: 10px;
 	display: none;
 }
@@ -85,7 +85,8 @@ header {
 .dropdown_menu a {
 	text-decoration: none;
 	color: black;
-	font-size: 18px;
+	font-size: 15px;
+	font-family: "eurostile", "arial", sans-serif;
 }
 
 .show_dropdown {
@@ -285,18 +286,20 @@ main article {
 }
 
 .article_title h3 {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 	text-decoration: none;
 	color: #e9e5dc;
 	margin: 5px;
+	margin-bottom: 3px;
 	width: inherit;
+	font-family: "calisto mt", "times", serif;
 }
 
 .article_date {
 	width: 100%;
 	margin-left: 5px;
-	font-size: 14px;
+	font-size: 13px;
 	color: #e9e5dc;
 	width: 100%;
 }
@@ -357,7 +360,9 @@ main article {
 	font-size: 30pt;
 	margin: 0px;
 	margin-bottom: 10px;
+	margin-top: 5px;
 	height: min-content;
+	font-family: "calisto mt", "times", serif;
 }
 
 .full_article_author {
@@ -405,6 +410,7 @@ main article {
 .full_article_tagline {
 	color: gray;
 	text-align: center;
+	font-size: 18px;
 }
 
 .full_article_text {
@@ -452,7 +458,7 @@ footer h4 {
 }
 
 
-/*////    NEW ARTICLE   /////////////////////*/
+/*////    CREATE/EDIT/DELETE FORMS   /////////////////////*/
 
 .form_title {
 	width: 100%;
