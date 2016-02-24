@@ -427,6 +427,7 @@ footer {
 	display: flex;
 	flex-wrap: wrap;
 	height: fit-content;
+	min-height: 28px;
 	margin-top: 20px;
 	margin-bottom: 10px;
 	background-color: black;
