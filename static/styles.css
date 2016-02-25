@@ -481,10 +481,16 @@ footer h4 {
 
 /*////    CREATE/EDIT/DELETE FORMS   /////////////////////*/
 
+.form_body {
+	height: 100vh;
+	align-content: flex-start;
+}
+
 /*  title  */
 
 .form_title {
 	width: 100%;
+	height: min-content;
 	text-align: center;
 	background-color: black;
 	color: #e9e5dc;
@@ -497,11 +503,14 @@ footer h4 {
     max-width: 100%;
     padding-left: 0px;
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .input_form li {
     list-style: none;
     margin-top: 10px;
+    width: 100%;
 }
 
 .input_form label {
@@ -527,6 +536,15 @@ footer h4 {
     -ms-transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out;
     outline: none;
+    width: 100%;
+}
+
+#short_input {
+	width: 50%;
+}
+
+#delete_label {
+	width: 100%;
 }
 
 /*  highlight inputs when selected  */
@@ -538,15 +556,22 @@ footer h4 {
     border: 1px solid gray;
 }
 
+/*  buttons  */
+
+#button_inputs {
+	display: flex;
+	margin-top: 20px;
+}
+
 /*  submit button  */
 
 .input_form input[type=submit], .input_form input[type=button]{
+	width: 65px;
     background: black;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 .input_form input[type=submit]:hover, .input_form input[type=button]:hover{
@@ -559,6 +584,8 @@ footer h4 {
 /*  cancel button  */
 
 .form_cancel {
+	height: 29px;
+	width: 65px;
 	margin-left: 10px;
 	background: black;
     padding: 8px 15px 8px 15px;
@@ -587,6 +614,10 @@ footer h4 {
 		padding-right: 15px;
 		padding-left: 15px;
 	}
+	.input_form {
+		margin-right: 15px;
+		margin-left: 15px;
+	}
 }
 
 @media screen and (max-width: 1070px) {
@@ -612,6 +643,9 @@ footer h4 {
 	}
 	.nav_item h3 {
 		margin-top: 8px;
+	}
+	#short_input {
+		width: 100%;
 	}
 }
 
@@ -673,5 +707,10 @@ footer h4 {
 		padding-top: 5px;
 		height: 3vh;
 		font-size: 14px;
+	}
+	#button_inputs {
+		width: fit-content;
+		margin-right: auto;
+		margin-left: auto;
 	}
 }

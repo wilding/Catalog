@@ -6,17 +6,17 @@
 		<title>The Chronicle</title>
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 	</head>
-	<body>
+	<body class='form_body'>
 		<h1 class="form_title">New Article</h1>
 		<form action="{{url_for('newArticle', category_id = category_id)}}" method='post'>
 			<ul class="input_form">
 				<li>
 					<label>Title:</label>
-					<input type='text' size='50' name='title'>
+					<input type='text' size='50' name='title' id='short_input'>
 				</li>
 				<li>
 					<label>Tagline:</label>
-					<input type='text' size='50' name='tagline'>
+					<input type='text' size='50' name='tagline' id='short_input'>
 				</li>
 				<li>
 					<label>Text:</label>
@@ -26,7 +26,7 @@
 					<label>Picture URL:</label>
 					<input type='text' size='200' name='picture'>
 				</li>
-				<li>
+				<li id="button_inputs">
 					<input type='submit' value='Create'>
 					<a href="{{url_for('showCatalog', category_id = category_id)}}" class="form_cancel">Cancel</a>
 				</li>

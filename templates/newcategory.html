@@ -6,7 +6,7 @@
 		<title>The Chronicle</title>
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 	</head>
-	<body>
+	<body class='form_body'>
 		<h1 class="form_title">New Category</h1>
 		<form action="{{url_for('newCategory')}}" method='post'>
 			<ul class="input_form">
@@ -14,7 +14,7 @@
 					<label>Name:</label>
 					<input type='text' size='50' name='name'>
 				</li>
-				<li>
+				<li id='button_inputs'>
 					<input type='submit' value='Create'>
 					<a href="{{url_for('showCategories')}}" class="form_cancel">Cancel</a>
 				</li>
