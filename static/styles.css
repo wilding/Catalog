@@ -657,6 +657,14 @@ footer h4 {
 		line-height: 75%;
 		padding-right: 7px;
 	}
+	.dropdown_menu {
+		width: min-content;
+		line-height: 50%;
+		margin-bottom: 15px;
+	}
+	.dropdown_menu a {
+		font-size: 10px;
+	}
 }
 
 @media screen and (max-width: 625px) {
@@ -723,20 +731,8 @@ footer h4 {
 		margin-right: auto;
 		margin-left: auto;
 	}
-	.dropdown_menu {
-		line-height: 50%;
-		margin-bottom: 19px;
-	}
-	.dropdown_menu a {
-		font-size: 10px;
-	}
 	.header_inner {
 		padding-right: 5px;
 		padding-left: 5px;
-	}
-}
-@media screen and (max-width: 376px) {
-	.dropdown_menu {
-		margin-bottom: 15px;
 	}
 }
