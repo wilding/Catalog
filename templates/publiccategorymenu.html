@@ -106,6 +106,24 @@
 		</footer>
 		<section class="github_source">
 			<a href="https://github.com/wilding/Catalog"><i class="fa fa-git-square fa-lg"></i></a>
+			<script>
+				var source = $('.github_source').children('a').children('i');
+				var w = $(window);
+				var d = $(document);
+				d.ready(function() {
+					if (w.width() <= 475) {
+						source.removeClass('fa-lg');
+					}
+				})
+				w.resize(function() {
+					if (w.width() <= 475) {
+						source.removeClass('fa-lg');
+					}
+					if (w.width() > 475) {
+						source.addClass('fa-lg');
+					}
+				})
+			</script>
 		</section>
 	</body>
 </html>

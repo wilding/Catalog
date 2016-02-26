@@ -716,6 +716,9 @@ footer h4 {
 }
 
 @media screen and (max-width: 475px) {
+	body {
+		margin-bottom: 4px;
+	}
 	.logo h1 {
 		padding-right: 10px;
 	}
@@ -770,6 +773,7 @@ footer h4 {
 	}
 	footer {
 		margin-top: 0px;
+		margin-bottom: 4px;
 	}
 	footer a {
 		font-size: 13px;
@@ -809,3 +813,11 @@ footer h4 {
 		min-height: calc(100vh - 150.25px);
 	}
 }
+
+
+
+.testingtesting {
+	background-color: black;
+}
+
+
