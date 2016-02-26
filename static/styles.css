@@ -435,7 +435,7 @@ footer {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	height: fit-content;
+	height: 30px;
 	min-height: 28px;
 	margin-top: 20px;
 	margin-bottom: 10px;
@@ -770,6 +770,9 @@ footer h4 {
 	}
 	footer {
 		margin-top: 0px;
+	}
+	footer a {
+		font-size: 13px;
 	}
 	#article_footer {
 		margin-top: 20px;
