@@ -403,13 +403,14 @@ main article {
 
 .full_article_data {
 	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
 }
 
 .full_article_figure {
 	width: 50%;
 	margin: 0px;
+	float: right;
+	margin-left: 20px;
+	margin-bottom: 5px;
 }
 
 .full_article_picture {
@@ -420,12 +421,10 @@ main article {
 	color: gray;
 	text-align: center;
 	font-size: 18px;
-	margin-bottom: 20px;
 }
 
 .full_article_text {
-	width: 50%;
-	padding-right: 20px;
+	width: 100%;
 	margin: 0px;
 	font-size: 18px;
 }
@@ -686,13 +685,12 @@ footer h4 {
 @media screen and (max-width: 625px) {
 	.full_article_figure {
 		width: 80%;
-	}
-	.full_article_text {
-		width: 100%;
-		padding-right: 0px;
-		order: 2;
+		margin-left: 0px;
+		margin-bottom: 20px;
 	}
 	.full_article_data{
+		display: flex;
+		flex-wrap: wrap;
 		justify-content: center;
 	}
 	.full_article_title {
