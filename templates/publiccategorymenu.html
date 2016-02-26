@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+		<script src="{{url_for('static', filename='g_signin.js')}}" data-state="{{STATE}}" data-route="/category/{{category.id}}/" id="g_signin_script"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -24,39 +25,6 @@
 						data-approvalprompt="force">
 					</span>
 				</div>
-				<!-- handle response that google api server sends to client
-						successful response
-						one time code to authorize server
-						access token client can use to make api calls in browser -->
-				<script>
-					function signInCallback(authResult) {
-						if (authResult['code']) {
-							// Hide the sign in button now that the user is authorized
-							$('#signinButton').attr('style', 'display: none');
-							// Send the one-time-use code to the server.  If the server responds, write a 'login successful' message to the webpage and then redirect back to the main restaurants page
-							$.ajax({
-								type: 'POST',
-								url: '/gconnect/?state={{STATE}}',
-								processData: false,
-								contentType: 'application/octet-stream; charset=utf-8',
-								data: authResult['code'],
-								success: function(result) {
-									if (result) {
-										$('.flash').append(result);
-										setTimeout(function() {
-											window.location.href = "/category/{{category.id}}/";
-										}, 4000);
-								} else if (authResult['error']) {
-									console.log('There was an error: ' + authResult['error']);
-								}
-								}
-							});
-						}
-						else {
-							$('.flash').append('<strong>Failed to make a server-side call.  Check your configuration and console.</strong>');
-						}
-					}
-				</script>
 			</section>
 		</header>
 		<nav>
