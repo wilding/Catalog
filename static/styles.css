@@ -200,7 +200,8 @@ main {
 .author_header {
 	display: flex;
 	justify-content: center;
-	padding-bottom: 10px;
+	align-content: center;
+	padding-bottom: 15px;
 	margin-top: 5px;
 }
 
@@ -214,8 +215,10 @@ main {
 
 #author_header_name {
 	text-align: center;
-	padding-bottom: 20px;
+	display: flex;
+	align-items: center;
 	padding-left: 10px;
+	margin: 0px;
 }
 
 /*  content  */
@@ -674,6 +677,10 @@ footer h4 {
 	main {
 		min-height: calc(100vh - 158.25px);
 	}
+	#author_header_image {
+		height: 3em;
+		width: 3em;
+	}
 }
 
 @media screen and (max-width: 625px) {
@@ -771,6 +778,16 @@ footer h4 {
 	}
 	main {
 		min-height: calc(100vh - 105.25px);
+	}
+	.author_header {
+		padding-bottom: 5px;
+	}
+	#author_header_image {
+		height: 2.5em;
+		width: 2.5em;
+	}
+	#author_header_name {
+		font-size: 20px;
 	}
 }
 
