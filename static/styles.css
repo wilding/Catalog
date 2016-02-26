@@ -756,6 +756,9 @@ footer h4 {
 		margin-right: auto;
 		margin-left: auto;
 	}
+	#delete_label {
+		text-align: center;
+	}
 	.header_inner {
 		padding-right: 5px;
 		padding-left: 5px;
