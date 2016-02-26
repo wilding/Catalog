@@ -797,19 +797,16 @@ footer h4 {
 }
 
 @media screen and (max-width: 388px) {
-	.login {
-		align-items: flex-end;
-		padding-bottom: 3px;
+	main {
+		min-height: calc(100vh - 98.8438px);
+	}
+	.logo {
+		font-size: 20pt;
 	}
 	.profile_pic {
-		height: 3em;
-		width: 3em;
 		margin-bottom: 5px;
 	}
 	.dropdown_menu {
-		margin-bottom: 10px;
-	}
-	main {
-		min-height: calc(100vh - 150.25px);
+		margin-bottom: 5px;
 	}
 }
