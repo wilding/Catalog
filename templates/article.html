@@ -79,25 +79,8 @@
 			<a href="{{url_for('deleteArticle', category_id = category.id, article_id = article.id)}}"><h4>Delete Article</h4></a>
 		</footer>
 		<section class="github_source">
-			<a href="https://github.com/wilding/Catalog"><i class="fa fa-git-square fa-lg"></i></a>
-			<script>
-				var source = $('.github_source').children('a').children('i');
-				var w = $(window);
-				var d = $(document);
-				d.ready(function() {
-					if (w.width() <= 475) {
-						source.removeClass('fa-lg');
-					}
-				})
-				w.resize(function() {
-					if (w.width() <= 475) {
-						source.removeClass('fa-lg');
-					}
-					if (w.width() > 475) {
-						source.addClass('fa-lg');
-					}
-				})
-			</script>
+			<a href="https://github.com/wilding/Catalog"><i class="fa fa-git-square fa-lg" id="github_icon"></i></a>
+			<script src="{{url_for('static', filename='github_source.js')}}"></script>
 		</section>
 	</body>
 </html>
