@@ -9,6 +9,7 @@
 		<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
 		<script src="{{url_for('static', filename='g_signin.js')}}" data-state="{{STATE}}" data-route="/category/{{article.category.id}}/catalog/{{article.id}}/" id="g_signin_script"></script>
 		<script src="{{url_for('static', filename='github_source.js')}}"></script>
+		<script src="{{url_for('static', filename='reformat_date.js')}}"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -54,7 +55,7 @@
 						<img src="{{article.user.picture}}" class="full_article_userpic">
 						<h7 class="full_article_username">{{article.author}}</h7>
 					</a>
-					<time datetime="{{article.date}}" class="full_article_date" id="article_date"></time>
+					<time datetime="{{article.date}}" class="article_date" id="full_article_date"></time>
 				</div>
 				<div class="full_article_data">
 					<figure class="full_article_figure">
@@ -63,16 +64,6 @@
 					</figure>
 					<p class="full_article_text">{{article.text}}</p>
 				</div>
-				<script>
-					var datestring = $("#article_date").attr("datetime");
-					datestring = datestring.slice(0, 19);
-					datestring = datestring.replace(" ", "T");
-					$("#article_date").attr("datetime", datestring);
-					var d = new Date(datestring);
-					d = d.toString();
-					d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + "&nbsp;" + d.slice(35);
-					$("#article_date").append(d);
-				</script>
 			</div>
 		</main>
 		<footer>

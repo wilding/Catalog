@@ -306,7 +306,6 @@ main article {
 	margin-left: 5px;
 	font-size: 13px;
 	color: #e9e5dc;
-	width: 100%;
 }
 
 .article_author {
@@ -394,11 +393,12 @@ main article {
 	text-align: left;
 }
 
-.full_article_date {
+#full_article_date {
 	align-self: center;
 	width: 25%;
 	color: gray;
 	margin-left: 10px;
+	font-size: 16px;
 }
 
 .full_article_data {
@@ -754,6 +754,9 @@ footer h4 {
 	.full_article_metadata {
 		font-size: 12px;
 		margin-bottom: 5px;
+	}
+	#full_article_date {
+		font-size: 12px;
 	}
 	.flash {
 		margin-top: 5px;

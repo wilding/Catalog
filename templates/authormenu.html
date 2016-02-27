@@ -8,6 +8,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="{{url_for('static', filename='github_source.js')}}"></script>
 		<script src="{{url_for('static', filename='dropdown_menu.js')}}"></script>
+		<script src="{{url_for('static', filename='reformat_date.js')}}"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -50,16 +51,6 @@
 							<h3>{{article.title}}</h3>
 							<time datetime="{{article.date}}" class="article_date"></time>
 						</a>
-						<script>
-							var datestring = $(".article_date").attr("datetime");
-							datestring = datestring.slice(0, 19);
-							datestring = datestring.replace(" ", "T");
-							$(".article_date").attr("datetime", datestring);
-							var d = new Date(datestring);
-							d = d.toString();
-							d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + " " + d.slice(35);
-							$(".article_date").text(d);
-						</script>
 					</div>
 				</article>
 				{% endfor %}
