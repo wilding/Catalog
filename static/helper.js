@@ -1,7 +1,7 @@
 ///////////////     GOOGLE SIGN IN    //////////////////////////////////////////////
 
-var state = $("#g_signin_script").attr('data-state');
-var route = $("#g_signin_script").attr('data-route');
+var state = $("#helper").attr('data-state');
+var route = $("#helper").attr('data-route');
 /*
 handle response that google api server sends to client
 successful response
@@ -37,3 +37,47 @@ function signInCallback(authResult) {
 		$('.flash').html('<strong>Failed to make a server-side call.  Check your configuration and console.</strong>');
 	}
 }
+
+// Run after DOM tree loads
+$(function() {
+
+///////////////     RESPONSIVE GITHUB SOURCE    //////////////////////////////////////////////
+
+	var w = $(window);
+	var d = $(document);
+	var icon = $("#github_icon");
+
+	d.ready(function() {
+		if (w.width() <= 475) {
+			icon.removeClass('fa-lg');
+		}
+	})
+
+	w.resize(function() {
+		if (w.width() <= 475) {
+			icon.removeClass('fa-lg');
+		}
+		if (w.width() > 475) {
+			icon.addClass('fa-lg');
+		}
+	})
+
+///////////////     PROFILE PIC DROPDOWN MENU    //////////////////////////////////////////////
+
+	$(".profile_pic").on("click", function() {
+		$(".dropdown_menu").toggleClass('show_dropdown');
+	});
+
+///////////////     DATE TIMEZONE/FORMATTING    //////////////////////////////////////////////
+
+	var article_date = $(".article_date");
+	var datestring = article_date.attr("datetime");
+	datestring = datestring.slice(0, 19);
+	datestring = datestring.replace(" ", "T");
+	article_date.attr("datetime", datestring);
+	var d = new Date(datestring);
+	d = d.toString();
+	d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + "\xa0" + d.slice(35);
+	article_date.text(d);
+
+});
