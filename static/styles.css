@@ -327,12 +327,6 @@ main article {
 	margin-right: 0px;
 }
 
-
-
-#authormenu_article_date {
-	width: 100%;
-}
-
 /*  full article  */
 
 .full_article_main {
@@ -392,7 +386,7 @@ main article {
 	text-align: left;
 }
 
-#full_article_date {
+.full_article_date {
 	align-self: center;
 	width: 25%;
 	color: gray;
@@ -756,7 +750,7 @@ footer h4 {
 		font-size: 12px;
 		margin-bottom: 5px;
 	}
-	#full_article_date {
+	.full_article_date {
 		font-size: 12px;
 	}
 	.flash {

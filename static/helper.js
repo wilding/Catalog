@@ -38,6 +38,7 @@ function signInCallback(authResult) {
 	}
 }
 
+
 // Run after DOM tree loads
 $(function() {
 
@@ -70,14 +71,31 @@ $(function() {
 
 ///////////////     DATE TIMEZONE/FORMATTING    //////////////////////////////////////////////
 
-	var article_date = $(".article_date");
-	var datestring = article_date.attr("datetime");
-	datestring = datestring.slice(0, 19);
-	datestring = datestring.replace(" ", "T");
-	article_date.attr("datetime", datestring);
-	var d = new Date(datestring);
-	d = d.toString();
-	d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + "\xa0" + d.slice(35);
-	article_date.text(d);
+	var reformatDate = function(input_date) {
+		var article_date = input_date;
+		var datestring = article_date.attr("datetime");
+		datestring = datestring.slice(0, 19);
+		datestring = datestring.replace(" ", "T");
+		article_date.attr("datetime", datestring);
+		var d = new Date(datestring);
+		d = d.toString();
+		d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + "\xa0" + d.slice(35);
+		article_date.text(d);
+	}
+
+	var i = 1;
+	var count = $('.article_date').length;
+	if (count > 0) {
+		while (i <= count) {
+			var iterated_date = $("#article_date_" + i);
+			reformatDate(iterated_date);
+			i++;
+		}
+	}
+
+	var full_article_date = $(".full_article_date");
+	if (full_article_date.length > 0) {
+		reformatDate(full_article_date);
+	}
 
 });
