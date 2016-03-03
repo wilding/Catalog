@@ -42,24 +42,48 @@ function signInCallback(authResult) {
 // Run after DOM tree loads
 $(function() {
 
-///////////////     RESPONSIVE GITHUB SOURCE    //////////////////////////////////////////////
+///////////////     RESPONSIVE FONTAWESOME ICONS    //////////////////////////////////////////////
 
 	var w = $(window);
 	var d = $(document);
 	var icon = $("#github_icon");
+	var sports = $('[id ^= "Sports_nav_item"]').children('i');
+	var weather = $('[id ^= "Weather_nav_item"]').children('i');
+	var economy = $('[id ^= "Economy_nav_item"]').children('i');
+	var politics = $('[id ^= "Politics_nav_item"]').children('i');
+	var food = $('[id ^= "Food_nav_item"]').children('i');
+	var art = $('[id ^= "Art_nav_item"]').children('i');
 
 	d.ready(function() {
 		if (w.width() <= 475) {
 			icon.removeClass('fa-lg');
+			sports.addClass("fa fa-trophy fa-lg");
+			weather.addClass("fa fa-umbrella fa-lg");
+			economy.addClass("fa fa-balance-scale fa-lg");
+			politics.addClass("fa fa-globe fa-lg");
+			food.addClass("fa fa-cutlery fa-lg");
+			art.addClass("fa fa-heart fa-lg");
 		}
 	})
 
 	w.resize(function() {
 		if (w.width() <= 475) {
 			icon.removeClass('fa-lg');
+			sports.addClass("fa fa-trophy fa-lg");
+			weather.addClass("fa fa-umbrella fa-lg");
+			economy.addClass("fa fa-balance-scale fa-lg");
+			politics.addClass("fa fa-globe fa-lg");
+			food.addClass("fa fa-cutlery fa-lg");
+			art.addClass("fa fa-heart fa-lg");
 		}
 		if (w.width() > 475) {
 			icon.addClass('fa-lg');
+			sports.removeClass("fa fa-trophy fa-lg");
+			weather.removeClass("fa fa-umbrella fa-lg");
+			economy.removeClass("fa fa-balance-scale fa-lg");
+			politics.removeClass("fa fa-globe fa-lg");
+			food.removeClass("fa fa-cutlery fa-lg");
+			art.removeClass("fa fa-heart fa-lg");
 		}
 	})
 

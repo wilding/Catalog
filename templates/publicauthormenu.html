@@ -29,7 +29,10 @@
 		</header>
 		<nav>
 			{% for c in categories: %}
-				<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item" id="{{c.name}}_nav_item"><h3>{{c.name}}</h3></a>
+				<a href="{{url_for('showCatalog', category_id = c.id)}}" class="nav_item" id="{{c.name}}_nav_item">
+					<i id="nav_icon"></i>
+					<h3>{{c.name}}</h3>
+				</a>
 				{% endfor %}
 		</nav>
 		<div class = 'flash'>

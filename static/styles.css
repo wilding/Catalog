@@ -121,6 +121,10 @@ nav {
 	margin: 3px;
 }
 
+#nav_icon {
+	margin-top: 5px;
+}
+
 /*  current nav item  */
 
 #Sports_nav_item_current {
@@ -791,6 +795,13 @@ footer h4 {
 	}
 	#author_header_name {
 		font-size: 20px;
+	}
+	.nav_item {
+		font-size: 8px;
+	}
+	.nav_item h3 {
+		margin-top: 1px;
+		margin-bottom: 3px;
 	}
 }
 
