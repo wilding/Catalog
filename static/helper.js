@@ -44,6 +44,7 @@ $(function() {
 
 ///////////////     RESPONSIVE FONTAWESOME ICONS    //////////////////////////////////////////////
 
+	// Jquery assignments
 	var w = $(window);
 	var d = $(document);
 	var github = $("#github_icon");
@@ -54,7 +55,7 @@ $(function() {
 	var politics = $('[id ^= "Politics_nav_item"]').children('i');
 	var food = $('[id ^= "Food_nav_item"]').children('i');
 	var art = $('[id ^= "Art_nav_item"]').children('i');
-
+	// Load page on mobile widths
 	d.ready(function() {
 		if (w.width() <= 475) {
 			github.removeClass('fa-lg');
@@ -67,8 +68,8 @@ $(function() {
 			art.addClass("fa fa-heart fa-lg");
 		}
 	})
-
 	w.resize(function() {
+		// Resize window below mobile widths
 		if (w.width() <= 475) {
 			github.removeClass('fa-lg');
 			atom.removeClass('fa-lg');
@@ -79,6 +80,7 @@ $(function() {
 			food.addClass("fa fa-cutlery fa-lg");
 			art.addClass("fa fa-heart fa-lg");
 		}
+		// Resize window above mobile widths
 		if (w.width() > 475) {
 			github.addClass('fa-lg');
 			atom.addClass('fa-lg');
@@ -99,6 +101,7 @@ $(function() {
 
 ///////////////     DATE TIMEZONE/FORMATTING    //////////////////////////////////////////////
 
+	// Reformat date string, convert it to javascript date object, add it to <time> tag
 	var reformatDate = function(input_date) {
 		var article_date = input_date;
 		var datestring = article_date.attr("datetime");
@@ -110,7 +113,7 @@ $(function() {
 		d = d.slice(4, 10) + "," + d.slice(10,15) + " (" + d.slice(16,21) + "\xa0" + d.slice(35);
 		article_date.text(d);
 	}
-
+	// Article cards
 	var i = 1;
 	var count = $('.article_date').length;
 	if (count > 0) {
@@ -120,7 +123,7 @@ $(function() {
 			i++;
 		}
 	}
-
+	// Full articles
 	var full_article_date = $(".full_article_date");
 	if (full_article_date.length > 0) {
 		reformatDate(full_article_date);

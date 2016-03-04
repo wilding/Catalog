@@ -1,3 +1,5 @@
+###############################    SETUP    ######################################################################
+
 # Flask setup
 from flask import Flask, render_template, url_for, request, redirect, flash, jsonify
 app = Flask(__name__)
@@ -30,6 +32,8 @@ from datetime import datetime
 # Atom setup
 from urlparse import urljoin
 from werkzeug.contrib.atom import AtomFeed
+
+###############################    G-SIGNIN    ######################################################################
 
 # CONNECT
 @app.route('/gconnect/', methods = ['POST'])
@@ -140,28 +144,9 @@ def gdisconnect():
 		response.headers['Content-Type'] = 'application/json'
 		return response
 
-# CATEGORIES JSON
-@app.route('/category/JSON/')
-@app.route('/categories/JSON/')
-def categoriesJSON():
-	categories = session.query(Category).all()
-	return jsonify(Categories=[category.serialize for category in categories])
+###############################    MENU PAGES    ######################################################################
 
-# ARTICLES JSON
-@app.route('/category/<int:category_id>/JSON/')
-@app.route('/category/<int:category_id>/catalog/JSON/')
-def catalogJSON(category_id):
-	category = session.query(Category).filter_by(id = category_id).one()
-	articles = session.query(Article).filter_by(category_id = category_id).all()
-	return jsonify(Articles=[article.serialize for article in articles])
-
-# SINGLE ARTICLE JSON
-@app.route('/category/<int:category_id>/catalog/<int:article_id>/JSON/')
-def articleJSON(category_id, article_id):
-	article = session.query(Article).filter_by(id = article_id).one()
-	return jsonify(Article=[article.serialize])
-
-# HOMEPAGE
+# MAIN MENU
 @app.route('/categories/')
 @app.route('/category/')
 @app.route('/')
@@ -202,7 +187,7 @@ def showAuthor(author_id):
 	else:
 		return render_template('authormenu.html', categories = categories, author = author, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
-# ARTICLE
+# FULL ARTICLE
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/')
 def showArticle(category_id, article_id):
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
@@ -214,6 +199,8 @@ def showArticle(category_id, article_id):
 		return render_template('publicarticle.html', categories = categories, category = category, article = article, STATE = state)
 	else:
 		return render_template('article.html', categories = categories, category = category, article = article, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
+
+###############################    CREATE PAGES    ######################################################################
 
 # NEW CATEGORY
 @app.route('/category/new/', methods = ['GET', 'POST'])
@@ -228,6 +215,22 @@ def newCategory():
 		return redirect(url_for('showCategories'))
 	else:
 		return render_template('newcategory.html')
+
+# NEW ARTICLE
+@app.route('/category/<int:category_id>/catalog/new/', methods = ['GET', 'POST'])
+def newArticle(category_id):
+	if 'username' not in login_session:
+		return redirect(url_for('showLogin'))
+	if request.method == 'POST':
+		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], picture = request.form['picture'], author = login_session['username'], date = str(datetime.now()), category_id = category_id, user_id = login_session['user_id'])
+		session.add(newarticle)
+		session.commit()
+		flash('New article created!')
+		return redirect(url_for('showCatalog', category_id = category_id))
+	else:
+		return render_template('newarticle.html', category_id = category_id)
+
+###############################    EDIT PAGES    ######################################################################
 
 # EDIT CATEGORY
 @app.route('/category/<int:category_id>/catalog/edit/', methods = ['GET', 'POST'])
@@ -246,36 +249,6 @@ def editCategory(category_id):
 		return redirect(url_for('showCatalog', category_id = category_id))
 	else:
 		return render_template('editcategory.html', category = category)
-
-# DELETE CATEGORY
-@app.route('/category/<int:category_id>/catalog/delete/', methods = ['GET', 'POST'])
-def deleteCategory(category_id):
-	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
-	category = session.query(Category).filter_by(id = category_id).one()
-	if category.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to delete this category.  Please create your own category in order to delete.');}</script><body onload='myFunction()'>"
-	if request.method == 'POST':
-		session.delete(category)
-		session.commit()
-		flash("Category deleted!")
-		return redirect(url_for('showCategories'))
-	else:
-		return render_template('deletecategory.html', category = category)
-
-# NEW ARTICLE
-@app.route('/category/<int:category_id>/catalog/new/', methods = ['GET', 'POST'])
-def newArticle(category_id):
-	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
-	if request.method == 'POST':
-		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], picture = request.form['picture'], author = login_session['username'], date = str(datetime.now()), category_id = category_id, user_id = login_session['user_id'])
-		session.add(newarticle)
-		session.commit()
-		flash('New article created!')
-		return redirect(url_for('showCatalog', category_id = category_id))
-	else:
-		return render_template('newarticle.html', category_id = category_id)
 
 # EDIT ARTICLE
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/edit/', methods = ['GET', 'POST'])
@@ -301,6 +274,24 @@ def editArticle(category_id, article_id):
 	else:
 		return render_template('editarticle.html', article = article)
 
+###############################    DELETE PAGES    ######################################################################
+
+# DELETE CATEGORY
+@app.route('/category/<int:category_id>/catalog/delete/', methods = ['GET', 'POST'])
+def deleteCategory(category_id):
+	if 'username' not in login_session:
+		return redirect(url_for('showLogin'))
+	category = session.query(Category).filter_by(id = category_id).one()
+	if category.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to delete this category.  Please create your own category in order to delete.');}</script><body onload='myFunction()'>"
+	if request.method == 'POST':
+		session.delete(category)
+		session.commit()
+		flash("Category deleted!")
+		return redirect(url_for('showCategories'))
+	else:
+		return render_template('deletecategory.html', category = category)
+
 # DELETE ARTICLE
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/delete/', methods = ['GET', 'POST'])
 def deleteArticle(category_id, article_id):
@@ -316,6 +307,31 @@ def deleteArticle(category_id, article_id):
 		return redirect(url_for('showCatalog', category_id = category_id))
 	else:
 		return render_template('deletearticle.html', article = article)
+
+###############################    JSON    ######################################################################
+
+# CATEGORIES JSON
+@app.route('/category/JSON/')
+@app.route('/categories/JSON/')
+def categoriesJSON():
+	categories = session.query(Category).all()
+	return jsonify(Categories=[category.serialize for category in categories])
+
+# ARTICLES JSON
+@app.route('/category/<int:category_id>/JSON/')
+@app.route('/category/<int:category_id>/catalog/JSON/')
+def catalogJSON(category_id):
+	category = session.query(Category).filter_by(id = category_id).one()
+	articles = session.query(Article).filter_by(category_id = category_id).all()
+	return jsonify(Articles=[article.serialize for article in articles])
+
+# SINGLE ARTICLE JSON
+@app.route('/category/<int:category_id>/catalog/<int:article_id>/JSON/')
+def articleJSON(category_id, article_id):
+	article = session.query(Article).filter_by(id = article_id).one()
+	return jsonify(Article=[article.serialize])
+
+###############################    ATOM FEEDS    ######################################################################
 
 # MAIN MENU FEED
 @app.route('/categories/rss/')
@@ -360,27 +376,30 @@ def authorFeed(author_id):
 		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.author, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
 	return feed.get_response()
 
+###############################    HELPER FUNCTIONS    ######################################################################
 
-# Helper Functions
+# Add user to database
 def createUser(login_session):
 	newUser = User(name = login_session['username'], email = login_session['email'], picture = login_session['picture'])
 	session.add(newUser)
 	session.commit()
 	user = session.query(User).filter_by(email = login_session['email']).one()
 	return user.id
+# Get user from id
 def getUserInfo(user_id):
 	user = session.query(User).filter_by(id = user_id).one()
 	return user
+# Get user id from email
 def getUserID(email):
 	try:
 		user = session.query(User).filter_by(email = email).one()
 		return user.id
 	except:
 		return None
-# atom feed helper function
+# Atom feed helper function
 def make_external(url):
 	return urljoin(request.url_root, url)
-# change date string into a python datetime object
+# Change date string into a python datetime object
 def reformat_date(datestring):
 	new_date = datestring
 	new_date = new_date[0:19]
@@ -388,6 +407,7 @@ def reformat_date(datestring):
 	new_date = datetime.strptime(new_date, "%Y-%m-%dT%H:%M:%S")
 	return new_date
 
+###############################    SETUP    ######################################################################
 
 # Flask setup
 if __name__ == '__main__':
