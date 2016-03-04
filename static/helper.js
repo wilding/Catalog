@@ -46,7 +46,8 @@ $(function() {
 
 	var w = $(window);
 	var d = $(document);
-	var icon = $("#github_icon");
+	var github = $("#github_icon");
+	var atom = $("#feed_icon");
 	var sports = $('[id ^= "Sports_nav_item"]').children('i');
 	var weather = $('[id ^= "Weather_nav_item"]').children('i');
 	var economy = $('[id ^= "Economy_nav_item"]').children('i');
@@ -56,7 +57,8 @@ $(function() {
 
 	d.ready(function() {
 		if (w.width() <= 475) {
-			icon.removeClass('fa-lg');
+			github.removeClass('fa-lg');
+			atom.removeClass('fa-lg');
 			sports.addClass("fa fa-trophy fa-lg");
 			weather.addClass("fa fa-umbrella fa-lg");
 			economy.addClass("fa fa-balance-scale fa-lg");
@@ -68,7 +70,8 @@ $(function() {
 
 	w.resize(function() {
 		if (w.width() <= 475) {
-			icon.removeClass('fa-lg');
+			github.removeClass('fa-lg');
+			atom.removeClass('fa-lg');
 			sports.addClass("fa fa-trophy fa-lg");
 			weather.addClass("fa fa-umbrella fa-lg");
 			economy.addClass("fa fa-balance-scale fa-lg");
@@ -77,7 +80,8 @@ $(function() {
 			art.addClass("fa fa-heart fa-lg");
 		}
 		if (w.width() > 475) {
-			icon.addClass('fa-lg');
+			github.addClass('fa-lg');
+			atom.addClass('fa-lg');
 			sports.removeClass("fa fa-trophy fa-lg");
 			weather.removeClass("fa fa-umbrella fa-lg");
 			economy.removeClass("fa fa-balance-scale fa-lg");

@@ -27,6 +27,10 @@ APPLICATION_NAME = "Newspaper"
 
 from datetime import datetime
 
+# Atom setup
+from urlparse import urljoin
+from werkzeug.contrib.atom import AtomFeed
+
 # CONNECT
 @app.route('/gconnect/', methods = ['POST'])
 def gconnect():
@@ -313,23 +317,77 @@ def deleteArticle(category_id, article_id):
 	else:
 		return render_template('deletearticle.html', article = article)
 
+# MAIN MENU FEED
+@app.route('/categories/rss/')
+@app.route('/category/rss/')
+@app.route('/rss/')
+@app.route('/categories/atom/')
+@app.route('/category/atom/')
+@app.route('/atom/')
+def recentFeed():
+	articles = session.query(Article).order_by(Article.date.desc()).limit(15).all()
+	feed = AtomFeed('Recent Articles', feed_url = request.url, url = request.url_root)
+	for article in articles:
+		new_date = reformat_date(article.date)
+		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.author, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
+	return feed.get_response()
+
+# CATEGORY MENU FEED
+@app.route('/category/<int:category_id>/catalog/rss/')
+@app.route('/category/<int:category_id>/rss/')
+@app.route('/category/<int:category_id>/catalog/atom/')
+@app.route('/category/<int:category_id>/atom/')
+def categoryFeed(category_id):
+	category = session.query(Category).filter_by(id = category_id).one()
+	articles = session.query(Article).filter_by(category_id = category_id).order_by(Article.date.desc()).limit(15).all()
+	feedname = category.name + " Articles"
+	feed = AtomFeed(feedname, feed_url = request.url, url = request.url_root)
+	for article in articles:
+		new_date = reformat_date(article.date)
+		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.author, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
+	return feed.get_response()
+
+# AUTHOR MENU FEED
+@app.route('/author/<int:author_id>/rss/')
+@app.route('/author/<int:author_id>/atom/')
+def authorFeed(author_id):
+	author = session.query(User).filter_by(id = author_id).one()
+	articles = session.query(Article).filter_by(user_id = author_id).order_by(Article.date.desc()).limit(15).all()
+	feedname = author.name + "'s Articles"
+	feed = AtomFeed(feedname, feed_url = request.url, url = request.url_root)
+	for article in articles:
+		new_date = reformat_date(article.date)
+		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.author, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
+	return feed.get_response()
+
+
+# Helper Functions
 def createUser(login_session):
 	newUser = User(name = login_session['username'], email = login_session['email'], picture = login_session['picture'])
 	session.add(newUser)
 	session.commit()
 	user = session.query(User).filter_by(email = login_session['email']).one()
 	return user.id
-
 def getUserInfo(user_id):
 	user = session.query(User).filter_by(id = user_id).one()
 	return user
-
 def getUserID(email):
 	try:
 		user = session.query(User).filter_by(email = email).one()
 		return user.id
 	except:
 		return None
+# atom feed helper function
+def make_external(url):
+	return urljoin(request.url_root, url)
+# change date string into a python datetime object
+def reformat_date(datestring):
+	new_date = datestring
+	new_date = new_date[0:19]
+	new_date = new_date.replace(" ", "T")
+	new_date = datetime.strptime(new_date, "%Y-%m-%dT%H:%M:%S")
+	return new_date
+
 
 # Flask setup
 if __name__ == '__main__':
