@@ -70,6 +70,7 @@
 			<a href="{{url_for('deleteArticle', category_id = category.id, article_id = article.id)}}"><h4>Delete Article</h4></a>
 		</footer>
 		<section class="github_source">
+			<a href="{{ url_for('articleJSON', category_id = category.id, article_id = article.id) }}"><img src="{{url_for('static', filename='images/json.svg')}}" id="json_icon"></a>
 			<a href="https://github.com/wilding/Catalog"><i class="fa fa-git-square fa-lg" id="github_icon"></i></a>
 		</section>
 	</body>

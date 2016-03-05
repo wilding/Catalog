@@ -474,6 +474,8 @@ footer h4 {
 .github_source a {
 	text-decoration: none;
 	color: black;
+	display: flex;
+	align-items: center;
 }
 
 .github_source a i {
@@ -481,6 +483,12 @@ footer h4 {
 	margin-right: 5px;
 }
 
+#json_icon {
+	height: 19.1px;
+	width: 18.2813px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
 
 /*////    CREATE/EDIT/DELETE FORMS   /////////////////////*/
 
@@ -807,6 +815,20 @@ footer h4 {
 	.nav_item h3 {
 		margin-top: 1px;
 		margin-bottom: 3px;
+	}
+	#json_icon {
+		height: 17.15px;
+		width: 13.8px;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	#github_icon {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	#feed_icon {
+		margin-left: 20px;
+		margin-right: 20px;
 	}
 }
 

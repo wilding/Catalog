@@ -310,23 +310,38 @@ def deleteArticle(category_id, article_id):
 
 ###############################    JSON    ######################################################################
 
-# CATEGORIES JSON
-@app.route('/category/JSON/')
+# MAIN MENU JSON
 @app.route('/categories/JSON/')
-def categoriesJSON():
-	categories = session.query(Category).all()
-	return jsonify(Categories=[category.serialize for category in categories])
-
-# ARTICLES JSON
-@app.route('/category/<int:category_id>/JSON/')
-@app.route('/category/<int:category_id>/catalog/JSON/')
-def catalogJSON(category_id):
-	category = session.query(Category).filter_by(id = category_id).one()
-	articles = session.query(Article).filter_by(category_id = category_id).all()
+@app.route('/category/JSON/')
+@app.route('/JSON/')
+@app.route('/categories/json/')
+@app.route('/category/json/')
+@app.route('/json/')
+def mainmenuJSON():
+	articles = session.query(Article).order_by(Article.date.desc()).all()
 	return jsonify(Articles=[article.serialize for article in articles])
 
-# SINGLE ARTICLE JSON
+# CATEGORY JSON
+@app.route('/category/<int:category_id>/catalog/JSON/')
+@app.route('/category/<int:category_id>/JSON/')
+@app.route('/category/<int:category_id>/catalog/json/')
+@app.route('/category/<int:category_id>/json/')
+def categoryJSON(category_id):
+	category = session.query(Category).filter_by(id = category_id).one()
+	articles = session.query(Article).filter_by(category_id = category_id).order_by(Article.date.desc()).all()
+	return jsonify(Articles=[article.serialize for article in articles])
+
+# AUTHOR JSON
+@app.route('/author/<int:author_id>/JSON/')
+@app.route('/author/<int:author_id>/json/')
+def authorJSON(author_id):
+	author = session.query(User).filter_by(id = author_id).one()
+	articles = session.query(Article).filter_by(user_id = author_id).order_by(Article.date.desc()).all()
+	return jsonify(Articles=[article.serialize for article in articles])
+
+# FULL ARTICLE JSON
 @app.route('/category/<int:category_id>/catalog/<int:article_id>/JSON/')
+@app.route('/category/<int:category_id>/catalog/<int:article_id>/json/')
 def articleJSON(category_id, article_id):
 	article = session.query(Article).filter_by(id = article_id).one()
 	return jsonify(Article=[article.serialize])
