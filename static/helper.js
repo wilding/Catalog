@@ -47,6 +47,7 @@ $(function() {
 	// Jquery assignments
 	var w = $(window);
 	var d = $(document);
+	var signin = $('.g-signin');
 	var github = $("#github_icon");
 	var atom = $("#feed_icon");
 	var sports = $('[id ^= "Sports_nav_item"]').children('i');
@@ -66,6 +67,7 @@ $(function() {
 			politics.addClass("fa fa-globe fa-lg");
 			food.addClass("fa fa-cutlery fa-lg");
 			art.addClass("fa fa-heart fa-lg");
+			signin.attr('data-height', 'short');
 		}
 	})
 	w.resize(function() {
