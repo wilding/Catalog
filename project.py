@@ -161,7 +161,7 @@ def showCategories():
 		return render_template('mainmenu.html', categories = categories, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # CATEGORY MENU
-@app.route('/category/<int:category_id>/catalog/')
+@app.route('/category/<int:category_id>/article/')
 @app.route('/category/<int:category_id>/')
 def showCatalog(category_id):
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
@@ -188,7 +188,7 @@ def showAuthor(author_id):
 		return render_template('authormenu.html', categories = categories, author = author, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # FULL ARTICLE
-@app.route('/category/<int:category_id>/catalog/<int:article_id>/')
+@app.route('/category/<int:category_id>/article/<int:article_id>/')
 def showArticle(category_id, article_id):
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 	login_session['state'] = state
@@ -217,7 +217,7 @@ def newCategory():
 		return render_template('newcategory.html')
 
 # NEW ARTICLE
-@app.route('/category/<int:category_id>/catalog/new/', methods = ['GET', 'POST'])
+@app.route('/category/<int:category_id>/article/new/', methods = ['GET', 'POST'])
 def newArticle(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
@@ -233,7 +233,7 @@ def newArticle(category_id):
 ###############################    EDIT PAGES    ######################################################################
 
 # EDIT CATEGORY
-@app.route('/category/<int:category_id>/catalog/edit/', methods = ['GET', 'POST'])
+@app.route('/category/<int:category_id>/edit/', methods = ['GET', 'POST'])
 def editCategory(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
@@ -251,7 +251,7 @@ def editCategory(category_id):
 		return render_template('editcategory.html', category = category)
 
 # EDIT ARTICLE
-@app.route('/category/<int:category_id>/catalog/<int:article_id>/edit/', methods = ['GET', 'POST'])
+@app.route('/category/<int:category_id>/article/<int:article_id>/edit/', methods = ['GET', 'POST'])
 def editArticle(category_id, article_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
@@ -277,7 +277,7 @@ def editArticle(category_id, article_id):
 ###############################    DELETE PAGES    ######################################################################
 
 # DELETE CATEGORY
-@app.route('/category/<int:category_id>/catalog/delete/', methods = ['GET', 'POST'])
+@app.route('/category/<int:category_id>/delete/', methods = ['GET', 'POST'])
 def deleteCategory(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
@@ -293,7 +293,7 @@ def deleteCategory(category_id):
 		return render_template('deletecategory.html', category = category)
 
 # DELETE ARTICLE
-@app.route('/category/<int:category_id>/catalog/<int:article_id>/delete/', methods = ['GET', 'POST'])
+@app.route('/category/<int:category_id>/article/<int:article_id>/delete/', methods = ['GET', 'POST'])
 def deleteArticle(category_id, article_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
@@ -322,9 +322,9 @@ def mainmenuJSON():
 	return jsonify(Articles=[article.serialize for article in articles])
 
 # CATEGORY JSON
-@app.route('/category/<int:category_id>/catalog/JSON/')
+@app.route('/category/<int:category_id>/article/JSON/')
 @app.route('/category/<int:category_id>/JSON/')
-@app.route('/category/<int:category_id>/catalog/json/')
+@app.route('/category/<int:category_id>/article/json/')
 @app.route('/category/<int:category_id>/json/')
 def categoryJSON(category_id):
 	category = session.query(Category).filter_by(id = category_id).one()
@@ -340,8 +340,8 @@ def authorJSON(author_id):
 	return jsonify(Articles=[article.serialize for article in articles])
 
 # FULL ARTICLE JSON
-@app.route('/category/<int:category_id>/catalog/<int:article_id>/JSON/')
-@app.route('/category/<int:category_id>/catalog/<int:article_id>/json/')
+@app.route('/category/<int:category_id>/article/<int:article_id>/JSON/')
+@app.route('/category/<int:category_id>/article/<int:article_id>/json/')
 def articleJSON(category_id, article_id):
 	article = session.query(Article).filter_by(id = article_id).one()
 	return jsonify(Article=[article.serialize])
@@ -364,9 +364,9 @@ def recentFeed():
 	return feed.get_response()
 
 # CATEGORY MENU FEED
-@app.route('/category/<int:category_id>/catalog/rss/')
+@app.route('/category/<int:category_id>/article/rss/')
 @app.route('/category/<int:category_id>/rss/')
-@app.route('/category/<int:category_id>/catalog/atom/')
+@app.route('/category/<int:category_id>/article/atom/')
 @app.route('/category/<int:category_id>/atom/')
 def categoryFeed(category_id):
 	category = session.query(Category).filter_by(id = category_id).one()
