@@ -154,7 +154,7 @@ def showCategories():
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 	login_session['state'] = state
 	categories = session.query(Category).all()
-	articles = session.query(Article).order_by(Article.date).all()
+	articles = session.query(Article).order_by(Article.date.desc()).all()
 	if 'username' not in login_session:
 		return render_template('publicmainmenu.html', categories = categories, articles = articles, STATE = state)
 	else:
@@ -168,7 +168,7 @@ def showCatalog(category_id):
 	login_session['state'] = state
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
-	articles = session.query(Article).filter_by(category_id = category_id).all()
+	articles = session.query(Article).filter_by(category_id = category_id).order_by(Article.date.desc()).all()
 	if 'username' not in login_session or login_session['user_id'] != category.user_id:
 		return render_template('publiccategorymenu.html', categories = categories, category = category, articles = articles, STATE = state)
 	else:
@@ -181,7 +181,7 @@ def showAuthor(author_id):
 	login_session['state'] = state
 	categories = session.query(Category).all()
 	author = session.query(User).filter_by(id = author_id).one()
-	articles = session.query(Article).filter_by(user_id = author_id).all()
+	articles = session.query(Article).filter_by(user_id = author_id).order_by(Article.date.desc()).all()
 	if 'username' not in login_session or login_session['user_id'] != author.id:
 		return render_template('publicauthormenu.html', categories = categories, author = author, articles = articles, STATE = state)
 	else:
