@@ -52,7 +52,7 @@
 				<div class="full_article_metadata">
 					<a href="{{url_for('showAuthor', author_id = article.user_id)}}" class="full_article_author">
 						<img src="{{article.user.picture}}" class="full_article_userpic">
-						<h7 class="full_article_username">{{article.author}}</h7>
+						<h7 class="full_article_username">{{article.user.name}}</h7>
 					</a>
 					<time datetime="{{article.date}}" class="full_article_date"></time>
 				</div>

@@ -70,8 +70,6 @@ class Article (Base):
 		String(2000))
 	tagline = Column (
 		String(100))
-	author = Column (
-		String(80))
 	date = Column (
 		String(25))
 	picture = Column (
@@ -91,7 +89,7 @@ class Article (Base):
 			'title' : self.title,
 			'tagline' : self.tagline,
 			'text' : self.text,
-			'author' : self.author,
+			'author' : self.user.name,
 			'date' : self.date,
 			'user_id' : self.user_id,
 		}

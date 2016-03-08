@@ -222,7 +222,7 @@ def newArticle(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	if request.method == 'POST':
-		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], picture = request.form['picture'], author = login_session['username'], date = str(datetime.now()), category_id = category_id, user_id = login_session['user_id'])
+		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], picture = request.form['picture'], date = str(datetime.now()), category_id = category_id, user_id = login_session['user_id'])
 		session.add(newarticle)
 		session.commit()
 		flash('New article created!')
@@ -360,7 +360,7 @@ def recentFeed():
 	feed = AtomFeed('Recent Articles', feed_url = request.url, url = request.url_root)
 	for article in articles:
 		new_date = reformat_date(article.date)
-		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.author, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
+		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.user.name, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
 	return feed.get_response()
 
 # CATEGORY MENU FEED
@@ -375,7 +375,7 @@ def categoryFeed(category_id):
 	feed = AtomFeed(feedname, feed_url = request.url, url = request.url_root)
 	for article in articles:
 		new_date = reformat_date(article.date)
-		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.author, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
+		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.user.name, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
 	return feed.get_response()
 
 # AUTHOR MENU FEED
@@ -388,7 +388,7 @@ def authorFeed(author_id):
 	feed = AtomFeed(feedname, feed_url = request.url, url = request.url_root)
 	for article in articles:
 		new_date = reformat_date(article.date)
-		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.author, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
+		feed.add(article.title, unicode(article.text), content_type = 'html', author = article.user.name, url = make_external(url_for('showArticle', category_id = article.category.id, article_id = article.id)), updated = new_date)
 	return feed.get_response()
 
 ###############################    HELPER FUNCTIONS    ######################################################################
