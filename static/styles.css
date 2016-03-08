@@ -426,6 +426,21 @@ main article {
 	font-size: 18px;
 }
 
+.last_edited {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	width: 100%;
+	height: fit-content;
+	color: gray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.last_edited p {
+	margin: 0px;
+}
+
 /*////    FOOTER   /////////////////////*/
 
 footer {

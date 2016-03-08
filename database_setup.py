@@ -72,6 +72,8 @@ class Article (Base):
 		String(100))
 	date = Column (
 		String(25))
+	last_edited = Column (
+		String(25))
 	picture = Column (
 		String(250))
 	category_id = Column (
@@ -91,6 +93,7 @@ class Article (Base):
 			'text' : self.text,
 			'author' : self.user.name,
 			'date' : self.date,
+			'last_edited' : self.last_edited,
 			'user_id' : self.user_id,
 		}
 

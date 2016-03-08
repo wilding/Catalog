@@ -131,4 +131,10 @@ $(function() {
 		reformatDate(full_article_date);
 	}
 
+	// Last edited
+	var last_edited = $(".full_article_last_edited");
+	if (last_edited.length > 0) {
+		reformatDate(last_edited);
+	}
+
 });
