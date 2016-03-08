@@ -73,15 +73,24 @@ header {
 	border-radius: 50px;
 	margin-top: 5px;
 	cursor: pointer;
+	z-index: 2;
 }
 
 .dropdown_menu {
 	text-align: right;
 	padding-right: 10px;
-	display: none;
 	height: min-content;
 	align-self: flex-end;
 	margin-bottom: 18px;
+	opacity: 0;
+	z-index: 1;
+	transition: opacity 0.35s, transform 0.35s;
+	transform: translate3d(85px,0,0);
+}
+
+.profile_info:hover .dropdown_menu {
+	opacity: 1;
+	transform: translate3d(0,0,0);
 }
 
 .dropdown_menu a {

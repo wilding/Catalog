@@ -103,12 +103,6 @@ $(function() {
 		}
 	})
 
-///////////////     PROFILE PIC DROPDOWN MENU    //////////////////////////////////////////////
-
-	$(".profile_pic").on("click", function() {
-		$(".dropdown_menu").toggleClass('show_dropdown');
-	});
-
 ///////////////     DATE TIMEZONE/FORMATTING    //////////////////////////////////////////////
 
 	// Reformat date string, convert it to javascript date object, add it to <time> tag
