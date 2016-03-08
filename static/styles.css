@@ -249,6 +249,7 @@ main article {
 	margin-bottom: 30px;
 	background-size: cover;
 	background-position: center;
+	overflow: hidden;
 }
 
 #Sports_card {
@@ -278,12 +279,11 @@ main article {
 
 .article_overlay {
 	width: 100%;
-	height: fit-content;
-	margin-bottom: 5px;
-	background-color: #000;
-  	background-color: rgba(0, 0, 0, 0.7);
+	height: 35%;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 90%);
   	display: flex;
   	align-self: flex-end;
+  	align-items: flex-end;
 }
 
 .article_title {
@@ -844,5 +844,32 @@ footer h4 {
 	}
 	.dropdown_menu {
 		margin-bottom: 5px;
+	}
+}
+
+@media screen and (min-device-width: 769px) {
+	main article .article_overlay,
+	main article time,
+	.article_author {
+		transition: opacity 0.35s, transform 0.35s;
+	}
+
+	main article h3 {
+		transform: translate3d(0,18px,0);
+		transition: transform 0.35s;
+	}
+
+	main article time,
+	.article_author {
+		opacity: 0;
+		transform: translate3d(0,10px,0);
+	}
+
+	main article:hover .article_overlay,
+	main article:hover time,
+	main article:hover .article_author,
+	main article:hover h3 {
+		opacity: 1;
+		transform: translate3d(0,0,0);
 	}
 }
