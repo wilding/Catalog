@@ -230,7 +230,8 @@ def newArticle(category_id):
 	if 'username' not in login_session:
 		return redirect(url_for('showLogin'))
 	if request.method == 'POST':
-		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], picture = request.form['picture'], date = str(datetime.now()), last_edited = str(datetime.now()), category_id = category_id, user_id = login_session['user_id'])
+		current_time = str(datetime.now())
+		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], picture = request.form['picture'], date = current_time, last_edited = current_time, category_id = category_id, user_id = login_session['user_id'])
 		session.add(newarticle)
 		session.commit()
 		flash('New article created!')
