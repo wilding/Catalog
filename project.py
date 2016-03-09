@@ -7,7 +7,7 @@ app = Flask(__name__)
 #import CRUD operations
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Category, Article, User
+from database_setup import Base, Category, Article, User, Comment
 
 #create session and connect to database
 engine = create_engine('sqlite:///newspaper.db')
@@ -188,17 +188,25 @@ def showAuthor(author_id):
 		return render_template('authormenu.html', categories = categories, author = author, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 # FULL ARTICLE
-@app.route('/category/<int:category_id>/article/<int:article_id>/')
+@app.route('/category/<int:category_id>/article/<int:article_id>/', methods = ['GET', 'POST'])
 def showArticle(category_id, article_id):
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 	login_session['state'] = state
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
 	article = session.query(Article).filter_by(id = article_id).one()
+	comments = session.query(Comment).filter_by(article_id = article_id).order_by(Comment.date.desc()).all()
+	if request.method == 'POST':
+		current_time = str(datetime.now())
+		newcomment = Comment(text = request.form['text'], date = current_time, last_edited = current_time, article_id = article_id, user_id = login_session['user_id'])
+		session.add(newcomment)
+		session.commit()
+		flash('New comment created!')
+		return redirect(url_for('showArticle', category_id = category_id, article_id = article_id))
 	if 'username' not in login_session or login_session['user_id'] != article.user_id:
-		return render_template('publicarticle.html', categories = categories, category = category, article = article, STATE = state)
+		return render_template('publicarticle.html', categories = categories, category = category, article = article, comments = comments, STATE = state)
 	else:
-		return render_template('article.html', categories = categories, category = category, article = article, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
+		return render_template('article.html', categories = categories, category = category, article = article, comments = comments, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
 
 ###############################    CREATE PAGES    ######################################################################
 

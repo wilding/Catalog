@@ -73,6 +73,33 @@
 					<time datetime="{{article.last_edited}}" class="full_article_last_edited">{{article.last_edited}}</time>
 				</div>
 			</div>
+			<div class="comments">
+				<div class="comment_header">
+					<i class="fa fa-angle-right" id="comment_indicator">&nbsp;</i><h6>Comments</h6>
+				</div>
+				<div class="comment_content">
+					{% for comment in comments: %}
+						<div class="comment" id="comment_{{loop.index0}}">
+							<div class="comment_metadata">
+								<a href="{{url_for('showAuthor', author_id = article.user_id)}}">
+									<img src="{{comment.user.picture}}" class="comment_author">
+								</a>
+							</div>
+							<div class="comment_data">
+								<p class="comment_text">{{comment.text}}</p>
+								<div class="comment_date_info">
+									<div>
+										<i>Created:&nbsp;</i><time class="comment_date" datetime="{{comment.date}}" id="comment_date_{{loop.index}}">{{comment.date}}</time>
+									</div>
+									<div>
+										<i>Edited:&nbsp;</i><time class="comment_last_edited" datetime="{{comment.last_edited}}" id="comment_last_edited_{{loop.index}}">{{comment.last_edited}}</time>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+				</div>
+			</div>
 		</main>
 		<footer>
 		</footer>

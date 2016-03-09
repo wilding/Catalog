@@ -139,4 +139,49 @@ $(function() {
 		reformatDate(last_edited);
 	}
 
+	// Comments
+	var comment_date = $(".comment_date");
+	var i = 1;
+	var count = comment_date.length;
+	if (count > 0) {
+		while (i <= count) {
+			var iterated_date = $("#comment_date_" + i);
+			reformatDate(iterated_date);
+			i++;
+		}
+	}
+	// Comments
+	var comment_last_edited = $(".comment_last_edited");
+	var i = 1;
+	var count = comment_last_edited.length;
+	if (count > 0) {
+		while (i <= count) {
+			var iterated_date = $("#comment_last_edited_" + i);
+			reformatDate(iterated_date);
+			i++;
+		}
+	}
+
+
+
+	///////////////////////
+	var carrot = $('#comment_indicator');
+	var comment_content = $('.comment_content');
+	var comment_header = $('.comment_header');
+
+	var toggleComments = function() {
+		comment_content.toggleClass('comments_active');
+		carrot.toggleClass('fa-angle-down');
+	}
+	comment_header.click(toggleComments);
+
+	var comments = $('.comment');
+	for (comment in comments) {
+		if (comment % 2 ==0) {
+			console.log(comment);
+			$('#comment_' + comment).css('background-color', 'rgba(125, 110, 79, 0.3)');
+		}
+	}
+
+
 });

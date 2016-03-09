@@ -450,6 +450,113 @@ main article {
 	margin: 0px;
 }
 
+/*  comments  */
+
+.comments {
+	width: 70%;
+}
+
+/*  comment header  */
+
+.comment_header {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 30px;
+	padding: 15px;
+	cursor: pointer;
+}
+
+.comment_header h6 {
+	margin: 0px;
+}
+
+/*  comment content  */
+
+.comment_content {
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.comments_active {
+	display: block;
+}
+
+/*  new comment  */
+
+#new_comment {
+	margin-bottom: 30px;
+}
+
+#new_comment_label {
+	font-family: times;
+}
+
+#new_comment_textarea {
+	height: 100px;
+}
+
+#new_comment_button_inputs {
+	display: flex;
+}
+
+/*  comments  */
+
+.comment {
+	width: calc(100% - 5px);
+	display: flex;
+}
+
+.comment_metadata {
+	width: 15%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 12px;
+}
+
+.comment_data {
+	width: 95%;
+	padding-right: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+}
+
+.comment_author {
+	height: 4em;
+	width: 4em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+}
+
+.comment_text {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.comment_date_info {
+	width: 100%;
+	font-size: 12px;
+	display: flex;
+	justify-content: space-between;
+	align-self: flex-end;
+	transition: opacity 0.35s, transform 0.35s;
+}
+
+.comment_data:hover .comment_date_info {
+	opacity: 1;
+	transform: translate3d(0,0,0);
+}
+
 /*////    FOOTER   /////////////////////*/
 
 footer {
@@ -653,11 +760,22 @@ footer h4 {
 		margin-right: 15px;
 		margin-left: 15px;
 	}
+	.comment {
+		margin-right: 15px;
+		margin-left: 15px;
+		width: calc(100% - 30px);
+	}
 }
 
 @media screen and (max-width: 1070px) {
 	main article {
 		width: calc(50% - 20px);
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.comment_data {
+		padding-left: 10px;
 	}
 }
 
@@ -713,6 +831,12 @@ footer h4 {
 	#author_header_image {
 		height: 3em;
 		width: 3em;
+	}
+	.comments {
+		width: 90%;
+	}
+	.comment_data i {
+		display: none;
 	}
 }
 
@@ -854,6 +978,20 @@ footer h4 {
 		margin-left: 20px;
 		margin-right: 20px;
 	}
+	.comments {
+		width: 100%;
+	}
+	.comment_author {
+		height: 3em;
+		width: 3em;
+	}
+	.comment {
+		margin: 0px;
+		width: 100%;
+	}
+	#new_comment_button_inputs {
+		justify-content: center;
+	}
 }
 
 @media screen and (max-width: 388px) {
@@ -868,6 +1006,9 @@ footer h4 {
 	}
 	.dropdown_menu {
 		margin-bottom: 5px;
+	}
+	.comment_date_info {
+		font-size: 11px;
 	}
 }
 
@@ -895,5 +1036,10 @@ footer h4 {
 	main article:hover h3 {
 		opacity: 1;
 		transform: translate3d(0,0,0);
+	}
+
+	.comment_date_info {
+		opacity: 0;
+		transform: translate3d(0,15px,0);
 	}
 }

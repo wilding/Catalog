@@ -68,6 +68,45 @@
 					<time datetime="{{article.last_edited}}" class="full_article_last_edited">{{article.last_edited}}</time>
 				</div>
 			</div>
+			<div class="comments">
+				<div class="comment_header">
+					<i class="fa fa-angle-right" id="comment_indicator">&nbsp;</i><h6>Comments</h6>
+				</div>
+				<div class="comment_content">
+					<form action="{{url_for('showArticle', category_id = category.id, article_id = article.id)}}" method='post'>
+						<ul class="input_form" id="new_comment">
+							<li>
+								<label id="new_comment_label">New Comment:</label>
+								<textarea name='text' class="field-textarea" id="new_comment_textarea"></textarea>
+							</li>
+							<li id="new_comment_button_inputs">
+								<input type='submit' value='Submit'>
+								<a href="{{url_for('showArticle', category_id = category.id, article_id = article.id)}}" class="form_cancel">Cancel</a>
+							</li>
+						</ul>
+					</form>
+					{% for comment in comments: %}
+						<div class="comment" id="comment_{{loop.index0}}">
+							<div class="comment_metadata">
+								<a href="{{url_for('showAuthor', author_id = article.user_id)}}">
+									<img src="{{comment.user.picture}}" class="comment_author">
+								</a>
+							</div>
+							<div class="comment_data">
+								<p class="comment_text">{{comment.text}}</p>
+								<div class="comment_date_info">
+									<div>
+										<i>Created:&nbsp;</i><time class="comment_date" datetime="{{comment.date}}" id="comment_date_{{loop.index}}">{{comment.date}}</time>
+									</div>
+									<div>
+										<i>Edited:&nbsp;</i><time class="comment_last_edited" datetime="{{comment.last_edited}}" id="comment_last_edited_{{loop.index}}">{{comment.last_edited}}</time>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+				</div>
+			</div>
 		</main>
 		<footer id="article_footer">
 			<a href="{{url_for('editArticle', category_id = category.id, article_id = article.id)}}"><h4>Edit Article</h4></a>

@@ -97,6 +97,38 @@ class Article (Base):
 			'user_id' : self.user_id,
 		}
 
+# Class
+class Comment (Base):
+
+	# Table Info
+	__tablename__ = 'comment'
+	# Mappers
+	id = Column (
+		Integer, primary_key = True)
+	text = Column (
+		String(2000))
+	date = Column (
+		String(25))
+	last_edited = Column (
+		String(25))
+	user_id = Column (
+		Integer, ForeignKey('user.id'))
+	user = relationship(User)
+	article_id = Column (
+		Integer, ForeignKey('article.id'))
+	article = relationship(Article)
+	# JSON
+	@property
+	def serialize(self):
+		return {
+			'id' : self.id,
+			'text' : self.text,
+			'author' : self.user.name,
+			'article' : self.article.title,
+			'date' : self.date,
+			'last_edited' : self.last_edited,
+		}
+
 # Configuration
 engine = create_engine('sqlite:///newspaper.db')
 Base.metadata.create_all(engine)
