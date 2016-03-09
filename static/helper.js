@@ -38,8 +38,9 @@ function signInCallback(authResult) {
 	}
 }
 
-///////////////     DATE TIMEZONE/FORMATTING    //////////////////////////////////////////////
+///////////////     GO TO ARTICLE    //////////////////////////////////////////////
 
+// Given a category id and an article id, load the page for the full article
 var loadArticle = function(category_id, article_id) {
 	var url = 'http://localhost:8080/category/' + category_id + '/article/' + article_id;
 	return window.location.assign(url);
@@ -132,14 +133,12 @@ $(function() {
 	if (full_article_date.length > 0) {
 		reformatDate(full_article_date);
 	}
-
 	// Last edited
 	var last_edited = $(".full_article_last_edited");
 	if (last_edited.length > 0) {
 		reformatDate(last_edited);
 	}
-
-	// Comments
+	// Comment date
 	var comment_date = $(".comment_date");
 	var i = 1;
 	var count = comment_date.length;
@@ -150,7 +149,7 @@ $(function() {
 			i++;
 		}
 	}
-	// Comments
+	// Comment last edited
 	var comment_last_edited = $(".comment_last_edited");
 	var i = 1;
 	var count = comment_last_edited.length;
@@ -162,19 +161,18 @@ $(function() {
 		}
 	}
 
+///////////////     COMMENTS    //////////////////////////////////////////////
 
-
-	///////////////////////
+	// Toggle hiding comments
 	var carrot = $('#comment_indicator');
 	var comment_content = $('.comment_content');
 	var comment_header = $('.comment_header');
-
 	var toggleComments = function() {
 		comment_content.toggleClass('comments_active');
 		carrot.toggleClass('fa-angle-down');
 	}
 	comment_header.click(toggleComments);
-
+	// Alternating background colors
 	var comments = $('.comment');
 	for (comment in comments) {
 		if (comment % 2 ==0) {
@@ -182,6 +180,5 @@ $(function() {
 			$('#comment_' + comment).css('background-color', 'rgba(125, 110, 79, 0.3)');
 		}
 	}
-
 
 });
