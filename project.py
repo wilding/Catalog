@@ -284,6 +284,25 @@ def editArticle(category_id, article_id):
 	else:
 		return render_template('editarticle.html', article = article)
 
+# EDIT COMMENT
+@app.route('/comment/<int:comment_id>/edit/', methods = ['GET', 'POST'])
+def editComment(comment_id):
+	if 'username' not in login_session:
+		return redirect(url_for('showLogin'))
+	comment = session.query(Comment).filter_by(id = comment_id).one()
+	if comment.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to edit this comment.  Please create your own comment in order to edit.');}</script><body onload='myFunction()'>"
+	if request.method == 'POST':
+		if request.form['text']:
+			comment.text = request.form['text']
+		comment.last_edited = str(datetime.now())
+		session.add(comment)
+		session.commit()
+		flash("Comment edited!")
+		return redirect(url_for('showArticle', category_id = comment.article.category_id, article_id = comment.article.id))
+	else:
+		return render_template('showArticle', category_id = comment.article.category_id, article_id = comment.article.id)
+
 ###############################    DELETE PAGES    ######################################################################
 
 # DELETE CATEGORY

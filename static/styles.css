@@ -501,12 +501,13 @@ main article {
 
 #new_comment_button_inputs {
 	display: flex;
+	align-items: center;
 }
 
 /*  comments  */
 
 .comment {
-	width: calc(100% - 5px);
+	width: 100%;
 	display: flex;
 }
 
@@ -518,11 +519,13 @@ main article {
 	align-items: center;
 	text-align: center;
 	font-size: 12px;
+	overflow: hidden;
 }
 
 .comment_data {
-	width: 95%;
+	width: 85%;
 	padding-right: 10px;
+	padding-left: 10px;
 	display: flex;
 	flex-wrap: wrap;
 	overflow: hidden;
@@ -532,10 +535,32 @@ main article {
 	height: 4em;
 	width: 4em;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 0px;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	border-radius: 50px;
+}
+
+.comment_crud_operations {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-self: flex-end;
+	color: #727272;
+}
+
+.comment_edit_button {
+	width: 50%;
+	margin: 0px;
+	cursor: pointer;
+	padding: 2px;
+}
+
+.comment_delete_button {
+	width: 50%;
+	margin: 0px;
+	cursor: pointer;
+	padding: 2px;
 }
 
 .comment_text {
@@ -550,11 +575,50 @@ main article {
 	justify-content: space-between;
 	align-self: flex-end;
 	transition: opacity 0.35s, transform 0.35s;
+	color: #727272;
 }
 
 .comment_data:hover .comment_date_info {
 	opacity: 1;
 	transform: translate3d(0,0,0);
+}
+
+/*  edit comment form  */
+
+.edit_comment {
+	display: none;
+	width: 100%;
+}
+
+.edit_comment_submit_button {
+	width: 50%;
+	margin: 0px;
+    cursor: pointer;
+    border: none;
+   	background-color: transparent;
+   	padding: 2px;
+   	font-size: 12px;
+   	font-family: times;
+   	color: #727272;
+}
+
+#edit_comment_author {
+	margin-top: 9px;
+}
+
+#edit_comment_data {
+	padding: 0;
+}
+
+#edit_comment_textarea {
+	height: inherit;
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	font-family: times;
+	background-color: transparent;
+	border: 0;
+	color: #727272;
 }
 
 /*////    FOOTER   /////////////////////*/
@@ -765,17 +829,25 @@ footer h4 {
 		margin-left: 15px;
 		width: calc(100% - 30px);
 	}
+	.edit_comment {
+		margin-right: 15px;
+		margin-left: 15px;
+		width: calc(100% - 30px);
+	}
 }
 
 @media screen and (max-width: 1070px) {
 	main article {
 		width: calc(50% - 20px);
 	}
-}
-
-@media screen and (max-width: 960px) {
-	.comment_data {
-		padding-left: 10px;
+	.comment_edit_button {
+		width: 100%;
+	}
+	.comment_delete_button {
+		width: 100%;
+	}
+	.edit_comment_submit_button {
+		width: 100%;
 	}
 }
 
@@ -989,6 +1061,10 @@ footer h4 {
 		margin: 0px;
 		width: 100%;
 	}
+	.edit_comment {
+		margin: 0px;
+		width: 100%;
+	}
 	#new_comment_button_inputs {
 		justify-content: center;
 	}
@@ -1041,5 +1117,11 @@ footer h4 {
 	.comment_date_info {
 		opacity: 0;
 		transform: translate3d(0,15px,0);
+	}
+
+	#comment_crud {
+		opacity: 0;
+		transform: translate3d(0,15px,0);
+		transition: opacity 0.35s, transform 0.35s;
 	}
 }

@@ -46,6 +46,23 @@ var loadArticle = function(category_id, article_id) {
 	return window.location.assign(url);
 }
 
+///////////////     SHOW/HIDE EDIT COMMENT FORM    //////////////////////////////////////////////
+
+// Show edit comment form
+var showCommentEditForm = function(index) {
+	var new_height = $('#comment_' + index).height();
+	$('#edit_comment_' + index).css('height', new_height);
+	$('.edit_comment').css('display', 'none');
+	$('.comment').css('display', 'flex');
+	$('#comment_' + index).css('display', 'none');
+	$('#edit_comment_' + index).css('display', 'flex');
+}
+// Hide edit comment form
+var hideCommentEditForm = function(index) {
+	$('#comment_' + index).css('display', 'flex');
+	$('#edit_comment_' + index).css('display', 'none');
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////    RUN AFTER DOM TREE LOADS    //////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -163,7 +180,7 @@ $(function() {
 
 ///////////////     COMMENTS    //////////////////////////////////////////////
 
-	// Toggle hiding comments
+	// Toggle hiding comment section
 	var carrot = $('#comment_indicator');
 	var comment_content = $('.comment_content');
 	var comment_header = $('.comment_header');
@@ -172,13 +189,37 @@ $(function() {
 		carrot.toggleClass('fa-angle-down');
 	}
 	comment_header.click(toggleComments);
-	// Alternating background colors
+	// Alternating light/dark comment background colors
 	var comments = $('.comment');
 	for (comment in comments) {
 		if (comment % 2 ==0) {
-			console.log(comment);
 			$('#comment_' + comment).css('background-color', 'rgba(125, 110, 79, 0.3)');
 		}
 	}
+	// Alternating light/dark edit form background colors
+	var edit_forms = $('.edit_comment');
+	for (form in edit_forms) {
+		if (form % 2 ==0) {
+			$('#edit_comment_' + form).css('background-color', 'rgba(125, 110, 79, 0.3)');
+		}
+	}
+
+	// Reveal comment edit/delete buttons when the owner hovers over the comment
+	var revealCommentOptions = function() {
+		var author = $(this).parent('.comment').attr('data-author');
+		var user = $(this).parent('.comment').attr('data-user');
+		if (author === user) {
+			$(this).children('#comment_crud').css('opacity', '1');
+			$(this).children('#comment_crud').css('transform', 'translate3d(0,0,0)');
+		}
+	}
+	// Hide comment edit/delete buttons when the mouse leaves the comment area on larger devices
+	var hideCommentOptions = function () {
+		if (w.width() > 768) {
+			$(this).children('#comment_crud').css('opacity', '0');
+			$(this).children('#comment_crud').css('transform', 'translate3d(0,15px,0)');
+		}
+	}
+	$(".comment_metadata").hover(revealCommentOptions, hideCommentOptions);
 
 });
