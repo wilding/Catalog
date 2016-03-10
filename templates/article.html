@@ -81,7 +81,7 @@
 							</li>
 							<li id="new_comment_button_inputs">
 								<input type='submit' value='Submit'>
-								<a href="{{url_for('showArticle', category_id = category.id, article_id = article.id)}}" class="form_cancel">Cancel</a>
+								<div class="form_cancel" onclick="clearTextArea()">Cancel</div>
 							</li>
 						</ul>
 					</form>
