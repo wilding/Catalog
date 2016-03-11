@@ -1086,7 +1086,7 @@ footer h4 {
 
 @media screen and (max-width: 388px) {
 	main {
-		min-height: calc(100vh - 98.8438px);
+		min-height: calc(100vh - 97.75px);
 	}
 	.logo {
 		font-size: 20pt;
