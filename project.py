@@ -214,7 +214,8 @@ def showArticle(category_id, article_id):
 @app.route('/category/new/', methods = ['GET', 'POST'])
 def newCategory():
 	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
+		flash('You must log in to create a category')
+		return redirect(url_for('showCategories'))
 	if request.method == 'POST':
 		newcategory = Category(name = request.form['name'], user_id = login_session['user_id'])
 		session.add(newcategory)
@@ -228,7 +229,8 @@ def newCategory():
 @app.route('/category/<int:category_id>/article/new/', methods = ['GET', 'POST'])
 def newArticle(category_id):
 	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
+		flash('You must log in to create an article')
+		return redirect(url_for('showCatalog', category_id = category_id))
 	if request.method == 'POST':
 		current_time = str(datetime.now())
 		newarticle = Article(title = request.form['title'], tagline = request.form['tagline'], text = request.form['text'], picture = request.form['picture'], date = current_time, last_edited = current_time, category_id = category_id, user_id = login_session['user_id'])
@@ -245,7 +247,8 @@ def newArticle(category_id):
 @app.route('/category/<int:category_id>/edit/', methods = ['GET', 'POST'])
 def editCategory(category_id):
 	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
+		flash('You must log in to edit a category')
+		return redirect(url_for('showCatalog', category_id = category_id))
 	category = session.query(Category).filter_by(id = category_id).one()
 	if category.user_id != login_session['user_id']:
 		return "<script>function myFunction() {alert('You are not authorized to edit this category.  Please create your own category in order to edit.');}</script><body onload='myFunction()'>"
@@ -263,7 +266,8 @@ def editCategory(category_id):
 @app.route('/category/<int:category_id>/article/<int:article_id>/edit/', methods = ['GET', 'POST'])
 def editArticle(category_id, article_id):
 	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
+		flash('You must log in to edit an article')
+		return redirect(url_for('showArticle', category_id = category_id, article_id = article_id))
 	article = session.query(Article).filter_by(id = article_id).one()
 	if article.user_id != login_session['user_id']:
 		return "<script>function myFunction() {alert('You are not authorized to edit this article.  Please create your own article in order to edit.');}</script><body onload='myFunction()'>"
@@ -287,9 +291,10 @@ def editArticle(category_id, article_id):
 # EDIT COMMENT
 @app.route('/comment/<int:comment_id>/edit/', methods = ['GET', 'POST'])
 def editComment(comment_id):
-	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
 	comment = session.query(Comment).filter_by(id = comment_id).one()
+	if 'username' not in login_session:
+		flash('You must log in to edit a comment')
+		return redirect(url_for('showArticle', category_id = comment.article.category_id, article_id = comment.article_id))
 	if comment.user_id != login_session['user_id']:
 		return "<script>function myFunction() {alert('You are not authorized to edit this comment.  Please create your own comment in order to edit.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
@@ -309,7 +314,8 @@ def editComment(comment_id):
 @app.route('/category/<int:category_id>/delete/', methods = ['GET', 'POST'])
 def deleteCategory(category_id):
 	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
+		flash('You must log in to delete a category')
+		return redirect(url_for('showCatalog', category_id = category_id))
 	category = session.query(Category).filter_by(id = category_id).one()
 	if category.user_id != login_session['user_id']:
 		return "<script>function myFunction() {alert('You are not authorized to delete this category.  Please create your own category in order to delete.');}</script><body onload='myFunction()'>"
@@ -325,7 +331,8 @@ def deleteCategory(category_id):
 @app.route('/category/<int:category_id>/article/<int:article_id>/delete/', methods = ['GET', 'POST'])
 def deleteArticle(category_id, article_id):
 	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
+		flash('You must log in to delete an article')
+		return redirect(url_for('showArticle', category_id = category_id, article_id = article_id))
 	article = session.query(Article).filter_by(id = article_id).one()
 	if article.user_id != login_session['user_id']:
 		return "<script>function myFunction() {alert('You are not authorized to delete this article.  Please create your own article in order to delete.');}</script><body onload='myFunction()'>"
@@ -340,9 +347,10 @@ def deleteArticle(category_id, article_id):
 # DELETE COMMENT
 @app.route('/comment/<int:comment_id>/delete/', methods = ['GET', 'POST'])
 def deleteComment(comment_id):
-	if 'username' not in login_session:
-		return redirect(url_for('showLogin'))
 	comment = session.query(Comment).options(joinedload_all('*')).filter_by(id = comment_id).one()
+	if 'username' not in login_session:
+		flash('You must log in to delete a comment')
+		return redirect(url_for('showArticle', category_id = comment.article.category_id, article_id = comment.article_id))
 	if comment.user_id != login_session['user_id']:
 		return "<script>function myFunction() {alert('You are not authorized to delete this comment.  Please create your own comment in order to delete.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
