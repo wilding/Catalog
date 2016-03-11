@@ -169,7 +169,7 @@ def showCatalog(category_id):
 	categories = session.query(Category).all()
 	category = session.query(Category).filter_by(id = category_id).one()
 	articles = session.query(Article).filter_by(category_id = category_id).order_by(Article.date.desc()).all()
-	if 'username' not in login_session or login_session['user_id'] != category.user_id:
+	if 'username' not in login_session:
 		return render_template('publiccategorymenu.html', categories = categories, category = category, articles = articles, STATE = state)
 	else:
 		return render_template('categorymenu.html', categories = categories, category = category, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
@@ -182,7 +182,7 @@ def showAuthor(author_id):
 	categories = session.query(Category).all()
 	author = session.query(User).filter_by(id = author_id).one()
 	articles = session.query(Article).filter_by(user_id = author_id).order_by(Article.date.desc()).all()
-	if 'username' not in login_session or login_session['user_id'] != author.id:
+	if 'username' not in login_session:
 		return render_template('publicauthormenu.html', categories = categories, author = author, articles = articles, STATE = state)
 	else:
 		return render_template('authormenu.html', categories = categories, author = author, articles = articles, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
@@ -203,7 +203,7 @@ def showArticle(category_id, article_id):
 		session.commit()
 		flash('New comment created!')
 		return redirect(url_for('showArticle', category_id = category_id, article_id = article_id))
-	if 'username' not in login_session or login_session['user_id'] != article.user_id:
+	if 'username' not in login_session:
 		return render_template('publicarticle.html', categories = categories, category = category, article = article, comments = comments, STATE = state)
 	else:
 		return render_template('article.html', categories = categories, category = category, article = article, comments = comments, profile_pic = login_session['picture'], profile_id = getUserID(login_session['email']))
