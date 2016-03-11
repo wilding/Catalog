@@ -224,7 +224,6 @@ $(function() {
 			$('#delete_comment_' + form).css('background-color', 'rgba(125, 110, 79, 0.3)');
 		}
 	}
-
 	// Reveal comment edit/delete buttons when the owner hovers over the comment
 	var revealCommentOptions = function() {
 		var author = $(this).parent('.comment').attr('data-author');
@@ -242,5 +241,15 @@ $(function() {
 		}
 	}
 	$(".comment_metadata").hover(revealCommentOptions, hideCommentOptions);
+	// Hide edit/delete buttons for everyone but the owner
+	for (comment in comments) {
+		var current_comment = $('#comment_' + comment);
+		if (current_comment.attr('data-author') !== current_comment.attr('data-user')) {
+			console.log(current_comment.attr('id'));
+			var crud = current_comment.children().children('#comment_crud');
+			crud.css('opacity', '0');
+			crud.css('transform', 'translate3d(0,15px,0)');
+		}
+	}
 
 });
