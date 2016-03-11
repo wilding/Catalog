@@ -46,7 +46,7 @@ var loadArticle = function(category_id, article_id) {
 	return window.location.assign(url);
 }
 
-///////////////     SHOW/HIDE EDIT COMMENT FORM    //////////////////////////////////////////////
+///////////////     SHOW/HIDE COMMENT EDIT/DELETE FORMS    //////////////////////////////////////////////
 
 // Show edit comment form
 var showCommentEditForm = function(index) {
@@ -57,10 +57,24 @@ var showCommentEditForm = function(index) {
 	$('#comment_' + index).css('display', 'none');
 	$('#edit_comment_' + index).css('display', 'flex');
 }
+// Show delete comment form
+var showCommentDeleteForm = function(index) {
+	var new_height = $('#comment_' + index).height();
+	$('#delete_comment_' + index).css('height', new_height);
+	$('.edit_comment').css('display', 'none');
+	$('.comment').css('display', 'flex');
+	$('#comment_' + index).css('display', 'none');
+	$('#delete_comment_' + index).css('display', 'flex');
+}
 // Hide edit comment form
 var hideCommentEditForm = function(index) {
 	$('#comment_' + index).css('display', 'flex');
 	$('#edit_comment_' + index).css('display', 'none');
+}
+// Hide delete comment form
+var hideCommentDeleteForm = function(index) {
+	$('#comment_' + index).css('display', 'flex');
+	$('#delete_comment_' + index).css('display', 'none');
 }
 
 ///////////////     CLEAR NEW COMMENT TEXT AREA    //////////////////////////////////////////////
@@ -207,6 +221,7 @@ $(function() {
 	for (form in edit_forms) {
 		if (form % 2 ==0) {
 			$('#edit_comment_' + form).css('background-color', 'rgba(125, 110, 79, 0.3)');
+			$('#delete_comment_' + form).css('background-color', 'rgba(125, 110, 79, 0.3)');
 		}
 	}
 

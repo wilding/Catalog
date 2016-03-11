@@ -621,6 +621,16 @@ main article {
 	color: #727272;
 }
 
+#delete_comment_label {
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+#final_comment_delete_button {
+	color: red;
+}
+
 /*////    FOOTER   /////////////////////*/
 
 footer {

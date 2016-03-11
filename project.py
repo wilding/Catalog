@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 #import CRUD operations
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, joinedload_all
 from database_setup import Base, Category, Article, User, Comment
 
 #create session and connect to database
@@ -336,6 +336,22 @@ def deleteArticle(category_id, article_id):
 		return redirect(url_for('showCatalog', category_id = category_id))
 	else:
 		return render_template('deletearticle.html', article = article)
+
+# DELETE COMMENT
+@app.route('/comment/<int:comment_id>/delete/', methods = ['GET', 'POST'])
+def deleteComment(comment_id):
+	if 'username' not in login_session:
+		return redirect(url_for('showLogin'))
+	comment = session.query(Comment).options(joinedload_all('*')).filter_by(id = comment_id).one()
+	if comment.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to delete this comment.  Please create your own comment in order to delete.');}</script><body onload='myFunction()'>"
+	if request.method == 'POST':
+		session.delete(comment)
+		session.commit()
+		flash("Comment deleted!")
+		return redirect(url_for('showArticle', category_id = comment.article.category_id, article_id = comment.article_id))
+	else:
+		return render_template('showArticle', category_id = comment.article.category_id, article_id = comment.article_id)
 
 ###############################    JSON    ######################################################################
 

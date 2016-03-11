@@ -93,7 +93,7 @@
 								</a>
 								<div class="comment_crud_operations" id="comment_crud">
 									<p class="comment_edit_button" onclick="showCommentEditForm({{loop.index0}})">Edit</a>
-									<p class="comment_delete_button">Delete</a>
+									<p class="comment_delete_button" onclick="showCommentDeleteForm({{loop.index0}})">Delete</a>
 								</div>
 							</div>
 							<div class="comment_data">
@@ -108,7 +108,7 @@
 								</div>
 							</div>
 						</div>
-						<form action="{{url_for('editComment', comment_id = comment.id)}}" method='post' class="edit_comment" id="edit_comment_{{loop.index0}}" data-author="{{comment.user.id}}" data-user="{{profile_id}}">
+						<form action="{{url_for('editComment', comment_id = comment.id)}}" method='post' class="edit_comment" id="edit_comment_{{loop.index0}}">
 							<div class="comment_metadata">
 								<img src="{{comment.user.picture}}" class="comment_author" id="edit_comment_author">
 								<div class="comment_crud_operations">
@@ -118,6 +118,18 @@
 							</div>
 							<div class="comment_data" id="edit_comment_data">
 								<textarea name='text' class="field-textarea" id="edit_comment_textarea">{{comment.text}}</textarea>
+							</div>
+						</form>
+						<form action="{{url_for('deleteComment', comment_id = comment.id)}}" method='post' class="edit_comment" id="delete_comment_{{loop.index0}}">
+							<div class="comment_metadata">
+								<img src="{{comment.user.picture}}" class="comment_author" id="edit_comment_author">
+								<div class="comment_crud_operations">
+									<input type='submit' value='Delete' class="edit_comment_submit_button" id="final_comment_delete_button">
+									<p class="comment_delete_button" onclick="hideCommentDeleteForm({{loop.index0}})">Cancel</a>
+								</div>
+							</div>
+							<div class="comment_data" id="edit_comment_data">
+								<label id="delete_comment_label">Are you sure you want to delete this comment?</label>
 							</div>
 						</form>
 						{% endfor %}
