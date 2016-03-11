@@ -251,7 +251,8 @@ def editCategory(category_id):
 		return redirect(url_for('showCatalog', category_id = category_id))
 	category = session.query(Category).filter_by(id = category_id).one()
 	if category.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to edit this category.  Please create your own category in order to edit.');}</script><body onload='myFunction()'>"
+		flash("Only the category's creator may edit it")
+		return redirect(url_for('showCatalog', category_id = category_id))
 	if request.method == 'POST':
 		if request.form['name']:
 			category.name = request.form['name']
@@ -270,7 +271,8 @@ def editArticle(category_id, article_id):
 		return redirect(url_for('showArticle', category_id = category_id, article_id = article_id))
 	article = session.query(Article).filter_by(id = article_id).one()
 	if article.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to edit this article.  Please create your own article in order to edit.');}</script><body onload='myFunction()'>"
+		flash('Only the author may edit this article')
+		return redirect(url_for('showArticle', category_id = category_id, article_id = article_id))
 	if request.method == 'POST':
 		if request.form['title']:
 			article.title = request.form['title']
@@ -296,7 +298,8 @@ def editComment(comment_id):
 		flash('You must log in to edit a comment')
 		return redirect(url_for('showArticle', category_id = comment.article.category_id, article_id = comment.article_id))
 	if comment.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to edit this comment.  Please create your own comment in order to edit.');}</script><body onload='myFunction()'>"
+		flash('Only the commenter may edit this comment')
+		return redirect(url_for('showArticle', category_id = comment.article.category_id, article_id = comment.article_id))
 	if request.method == 'POST':
 		if request.form['text']:
 			comment.text = request.form['text']
@@ -318,7 +321,8 @@ def deleteCategory(category_id):
 		return redirect(url_for('showCatalog', category_id = category_id))
 	category = session.query(Category).filter_by(id = category_id).one()
 	if category.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to delete this category.  Please create your own category in order to delete.');}</script><body onload='myFunction()'>"
+		flash("Only the category's creator may delete it")
+		return redirect(url_for('showCatalog', category_id = category_id))
 	if request.method == 'POST':
 		session.delete(category)
 		session.commit()
@@ -335,7 +339,8 @@ def deleteArticle(category_id, article_id):
 		return redirect(url_for('showArticle', category_id = category_id, article_id = article_id))
 	article = session.query(Article).filter_by(id = article_id).one()
 	if article.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to delete this article.  Please create your own article in order to delete.');}</script><body onload='myFunction()'>"
+		flash('Only the author may delete this article')
+		return redirect(url_for('showArticle', category_id = category_id, article_id = article_id))
 	if request.method == 'POST':
 		session.delete(article)
 		session.commit()
@@ -352,7 +357,8 @@ def deleteComment(comment_id):
 		flash('You must log in to delete a comment')
 		return redirect(url_for('showArticle', category_id = comment.article.category_id, article_id = comment.article_id))
 	if comment.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to delete this comment.  Please create your own comment in order to delete.');}</script><body onload='myFunction()'>"
+		flash('Only the commenter may delete this comment')
+		return redirect(url_for('showArticle', category_id = comment.article.category_id, article_id = comment.article_id))
 	if request.method == 'POST':
 		session.delete(comment)
 		session.commit()
