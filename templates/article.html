@@ -89,7 +89,7 @@
 					{% for comment in comments: %}
 						<div class="comment" id="comment_{{loop.index0}}" data-author="{{comment.user.id}}" data-user="{{profile_id}}">
 							<div class="comment_metadata">
-								<a href="{{url_for('showAuthor', author_id = article.user_id)}}">
+								<a href="{{url_for('showAuthor', author_id = comment.user_id)}}">
 									<img src="{{comment.user.picture}}" class="comment_author">
 								</a>
 								<div class="comment_crud_operations" id="comment_crud">
