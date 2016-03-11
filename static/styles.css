@@ -541,6 +541,10 @@ main article {
 	border-radius: 50px;
 }
 
+#public_comment_author {
+	margin-bottom: 10px;
+}
+
 .comment_crud_operations {
 	width: 100%;
 	display: flex;

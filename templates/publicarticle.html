@@ -82,7 +82,7 @@
 						<div class="comment" id="comment_{{loop.index0}}">
 							<div class="comment_metadata">
 								<a href="{{url_for('showAuthor', author_id = article.user_id)}}">
-									<img src="{{comment.user.picture}}" class="comment_author">
+									<img src="{{comment.user.picture}}" class="comment_author" id="public_comment_author">
 								</a>
 							</div>
 							<div class="comment_data">
