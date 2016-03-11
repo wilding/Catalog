@@ -216,6 +216,9 @@ def newCategory():
 	if 'username' not in login_session:
 		flash('You must log in to create a category')
 		return redirect(url_for('showCategories'))
+	if login_session['user_id'] != 1:
+		flash('Only the site owner may create categories')
+		return redirect(url_for('showCategories'))
 	if request.method == 'POST':
 		newcategory = Category(name = request.form['name'], user_id = login_session['user_id'])
 		session.add(newcategory)
