@@ -252,4 +252,17 @@ $(function() {
 		}
 	}
 
+///////////////     HIDE FOOTER BUTTONS    //////////////////////////////////////////////
+
+	// Hide edit/delete buttons in category menu and full article page if not the creator
+	var user_info = $('.user_information');
+	var user = user_info.attr('data-user');
+	var creator = user_info.attr('data-creator');
+	if (user !== creator) {
+		$('.footer_button').css('display', 'none');
+	}
+	// Hide new category button if not the site owner
+	if (user !== '1') {
+		$('.mainmenu_footer_button').css('display', 'none');
+	}
 });

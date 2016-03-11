@@ -647,6 +647,7 @@ footer {
 	margin-bottom: 10px;
 	background-color: black;
 	align-items: center;
+	justify-content: center;
 }
 
 footer a {

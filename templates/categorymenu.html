@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta class="user_information" data-user="{{profile_id}}" data-creator="{{category.user_id}}">
 		<title>The Chronicle</title>
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -63,9 +64,9 @@
 			</div>
 		</main>
 		<footer id="category_footer">
-			<a href="{{url_for('editCategory', category_id = category.id)}}"><h4>Edit Category</h4></a>
+			<a href="{{url_for('editCategory', category_id = category.id)}}" class="footer_button"><h4>Edit Category</h4></a>
 			<a href="{{url_for('newArticle', category_id = category.id)}}"><h4>New Article</h4></a>
-			<a href="{{url_for('deleteCategory', category_id = category.id)}}"><h4>Delete Category</h4></a>
+			<a href="{{url_for('deleteCategory', category_id = category.id)}}" class="footer_button"><h4>Delete Category</h4></a>
 		</footer>
 		<section class="github_source">
 			<a href="{{ url_for('categoryJSON', category_id = category.id) }}"><img src="{{url_for('static', filename='images/json.svg')}}" id="json_icon"></a>
