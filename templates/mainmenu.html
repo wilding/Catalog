@@ -18,7 +18,7 @@
 				<div class="profile_info">
 					<div class="dropdown_menu">
 						<a href="{{url_for('showAuthor', author_id = profile_id)}}">Author Menu</a><br><br>
-						<a href="{{url_for('gdisconnect')}}">Logout</a>
+						<a href="{{url_for('gdisconnect', redirect_url = 'category')}}">Logout</a>
 					</div>
 					<img src="{{profile_pic}}" class="profile_pic">
 				</div>

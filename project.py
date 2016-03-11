@@ -113,8 +113,8 @@ def gconnect():
 	return output
 
 # DISCONNECT - revoke current user's token and reset their login_session
-@app.route('/gdisconnect/')
-def gdisconnect():
+@app.route('/<path:redirect_url>/gdisconnect/')
+def gdisconnect(redirect_url):
 	# only disconnect a connected user
 	access_token = login_session.get('access_token')
 	if access_token is None:
@@ -137,7 +137,7 @@ def gdisconnect():
 		response = make_response(json.dumps('Successfully disconnected.'), 200)
 		response.headers['Content-Type'] = 'application/json'
 		flash("Successfully logged out")
-		return redirect(url_for('showCategories'))
+		return redirect(redirect_url)
 	else:
 		# for whatever reason, the given token was invalid
 		response = make_response(json.dumps('Failed to revoke token for given user.'), 400)
