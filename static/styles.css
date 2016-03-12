@@ -40,6 +40,7 @@ header {
 	font-size: 45pt;
 	text-decoration: none;
 	color: black;
+	transition: font-size 0.35s;
 }
 
 .logo h1 {
@@ -74,6 +75,7 @@ header {
 	margin-top: 5px;
 	cursor: pointer;
 	z-index: 2;
+	transition: height 0.35s, width 0.35s;
 }
 
 .dropdown_menu {
@@ -113,6 +115,7 @@ nav {
 	flex-wrap: wrap;
 	background-color: black;
 	align-items: center;
+	transition: height 0.35s;
 }
 
 .nav_item {
@@ -124,6 +127,7 @@ nav {
 	color: #e9e5dc;
 	background: black;
 	border-bottom: thick solid black;
+	transition: font-size 0.35s;
 }
 
 .nav_item h3 {
@@ -224,6 +228,7 @@ main {
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	border-radius: 50px;
+	transition: height 0.35s, width 0.35s;
 }
 
 #author_header_name {
@@ -259,6 +264,7 @@ main article {
 	background-position: center;
 	overflow: hidden;
 	cursor: pointer;
+	transition: width 0.35s;
 }
 
 #Sports_card {
@@ -374,6 +380,7 @@ main article {
 	height: min-content;
 	font-family: "calisto mt", "times", serif;
 	text-align: center;
+	transition: font-size 0.35s;
 }
 
 .full_article_author {
@@ -417,6 +424,7 @@ main article {
 	float: right;
 	margin-left: 20px;
 	margin-bottom: 5px;
+	transition: width 0.35s;
 }
 
 .full_article_picture {
@@ -454,6 +462,7 @@ main article {
 
 .comments {
 	width: 70%;
+	transition: width 0.35s;
 }
 
 /*  comment header  */
@@ -966,6 +975,9 @@ footer h4 {
 	}
 	.logo h1 {
 		padding-right: 10px;
+	}
+	.content {
+		justify-content: center;
 	}
 	main article {
 		width: 100%;
