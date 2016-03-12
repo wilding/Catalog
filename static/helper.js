@@ -155,7 +155,6 @@ $(function() {
 			}
 		}
 		if (w.width() > 1070 || w.width() <= 475) {
-			console.log('success');
 			for (n in $('.edit_comment')) {
 				var edit_form = $('#edit_comment_' + n);
 				if (edit_form.attr('data-ogheight') !== undefined) {
