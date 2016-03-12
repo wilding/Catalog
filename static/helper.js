@@ -258,7 +258,6 @@ $(function() {
 	for (comment in comments) {
 		var current_comment = $('#comment_' + comment);
 		if (current_comment.attr('data-author') !== current_comment.attr('data-user')) {
-			console.log(current_comment.attr('id'));
 			var crud = current_comment.children().children('#comment_crud');
 			crud.css('opacity', '0');
 			crud.css('transform', 'translate3d(0,15px,0)');
