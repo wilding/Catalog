@@ -144,11 +144,26 @@ $(function() {
 			for (n in $('.edit_comment')) {
 				var edit_form = $('#edit_comment_' + n);
 				if (edit_form.height() < 97 && edit_form.height() > 0) {
+					edit_form.attr('data-ogheight', edit_form.height());
 					edit_form.css('height', 97);
 				}
 				var delete_form = $('#delete_comment_' + n);
 				if (delete_form.height() < 97 && delete_form.height() > 0) {
+					delete_form.attr('data-ogheight', delete_form.height());
 					delete_form.css('height', 97);
+				}
+			}
+		}
+		if (w.width() > 1070 || w.width() <= 475) {
+			console.log('success');
+			for (n in $('.edit_comment')) {
+				var edit_form = $('#edit_comment_' + n);
+				if (edit_form.attr('data-ogheight') !== undefined) {
+					edit_form.css('height', edit_form.attr('data-ogheight'));
+				}
+				var delete_form = $('#delete_comment_' + n);
+				if (delete_form.attr('data-ogheight') !== undefined) {
+					delete_form.css('height', delete_form.attr('data-ogheight'));
 				}
 			}
 		}
