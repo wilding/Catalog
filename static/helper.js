@@ -88,7 +88,7 @@ var clearTextArea = function () {
 /////////////////////////////////////////////////////////////////////////////////////////////
 $(function() {
 
-///////////////     RESPONSIVE FONTAWESOME ICONS    //////////////////////////////////////////////
+///////////////     RESPONSIVE ELEMENTS    //////////////////////////////////////////////
 
 	// Jquery assignments
 	var w = $(window);
@@ -138,6 +138,19 @@ $(function() {
 			politics.removeClass("fa fa-globe fa-lg");
 			food.removeClass("fa fa-cutlery fa-lg");
 			art.removeClass("fa fa-heart fa-lg");
+		}
+		// Resize comment forms
+		if (w.width() <= 1070 && w.width() > 475) {
+			for (n in $('.edit_comment')) {
+				var edit_form = $('#edit_comment_' + n);
+				if (edit_form.height() < 97 && edit_form.height() > 0) {
+					edit_form.css('height', 97);
+				}
+				var delete_form = $('#delete_comment_' + n);
+				if (delete_form.height() < 97 && delete_form.height() > 0) {
+					delete_form.css('height', 97);
+				}
+			}
 		}
 	})
 
