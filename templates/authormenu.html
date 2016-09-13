@@ -47,7 +47,7 @@
 			</div>
 			<div class = "content">
 			{% for article in articles: %}
-				<article id="{{article.category.name}}_card" style="background-image: url({{article.picture}});" onclick="loadArticle({{article.category_id}}, {{article.id}});">
+				<article id="{{article.category.name}}_card" style="background-image: url({{article.picture}});" onclick="window.location.assign('{{url_for('showArticle', category_id=article.category_id, article_id=article.id)}}');">
 					<div class="article_overlay">
 						<div class="article_title">
 							<h3>{{article.title}}</h3>
