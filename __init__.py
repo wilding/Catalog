@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker, joinedload_all
 from database_setup import Base, Category, Article, User, Comment
 
 #create session and connect to database
-engine = create_engine('sqlite:///newspaper.db')
+engine = create_engine('postgresql://catalog:2;8[%FtUWE@opQ$?6TddBm)4@localhost/catalog')
 Base.metadata.bind=engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
@@ -24,7 +24,7 @@ import httplib2
 import json
 from flask import make_response
 import requests
-CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
+CLIENT_ID = json.loads(open('/var/www/Catalog/Catalog/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Newspaper"
 
 from datetime import datetime
@@ -48,7 +48,7 @@ def gconnect():
 
 	try:
 		# Upgrade the authorization code into a credentials object
-		oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+		oauth_flow = flow_from_clientsecrets('/var/www/Catalog/Catalog/client_secrets.json', scope='')
 		oauth_flow.redirect_uri = 'postmessage'
 		credentials = oauth_flow.step2_exchange(code)
 	except FlowExchangeError:

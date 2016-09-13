@@ -16,11 +16,11 @@ class User (Base):
 	__tablename__ = 'user'
 	# Mappers
 	name = Column (
-		String(250), nullable = False)
+		String(500), nullable = False)
 	email = Column (
-		String(250), nullable = False)
+		String(500), nullable = False)
 	picture = Column (
-		String(250))
+		String(10000))
 	id = Column (
 		Integer, primary_key = True)
 	# JSON
@@ -63,19 +63,19 @@ class Article (Base):
 	__tablename__ = 'article'
 	# Mappers
 	title = Column (
-		String(80), nullable = False)
+		String(500), nullable = False)
 	id = Column (
 		Integer, primary_key = True)
 	text = Column (
-		String(2000))
+		String(200000))
 	tagline = Column (
-		String(100))
+		String(1000))
 	date = Column (
-		String(25))
+		String(50))
 	last_edited = Column (
-		String(25))
+		String(50))
 	picture = Column (
-		String(250))
+		String(25000))
 	category_id = Column (
 		Integer, ForeignKey('category.id'))
 	category = relationship(Category)
@@ -106,11 +106,11 @@ class Comment (Base):
 	id = Column (
 		Integer, primary_key = True)
 	text = Column (
-		String(2000))
+		String(20000))
 	date = Column (
-		String(25))
+		String(50))
 	last_edited = Column (
-		String(25))
+		String(50))
 	user_id = Column (
 		Integer, ForeignKey('user.id'))
 	user = relationship(User)
@@ -130,5 +130,5 @@ class Comment (Base):
 		}
 
 # Configuration
-engine = create_engine('sqlite:///newspaper.db')
+engine = create_engine('postgresql://catalog:2;8[%FtUWE@opQ$?6TddBm)4@localhost/catalog')
 Base.metadata.create_all(engine)

@@ -42,7 +42,7 @@ function signInCallback(authResult) {
 
 // Given a category id and an article id, load the page for the full article
 var loadArticle = function(category_id, article_id) {
-	var url = 'http://localhost:8080/category/' + category_id + '/article/' + article_id;
+	var url = 'http://ec2-54-183-239-163.us-west-1.compute.amazonaws.com/category/' + category_id + '/article/' + article_id;
 	return window.location.assign(url);
 }
 
