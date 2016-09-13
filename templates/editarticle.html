@@ -1,36 +1,30 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>The Chronicle</title>
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
-	</head>
-	<body class='form_body'>
-		<h1 class="form_title">Edit Article</h1>
-		<form action="{{url_for('editArticle', category_id = article.category_id, article_id = article.id)}}" method='post'>
-			<ul class="input_form">
-				<li>
-					<label>Title:</label>
-					<input type='text' size='50' name='title' placeholder='{{article.title}}' id='short_input'>
-				</li>
-				<li>
-					<label>Tagline:</label>
-					<input type='text' size='50' name='tagline' placeholder='{{article.tagline}}' id='short_input'>
-				</li>
-				<li>
-					<label>Text:</label>
-					<textarea name='text' class="field-textarea" placeholder='{{article.text}}'></textarea>
-				</li>
-				<li>
-					<label>Picture URL:</label>
-					<input type='text' size='200' name='picture' placeholder='{{article.picture}}'>
-				</li>
-				<li id='button_inputs'>
-					<input type='submit' value='Edit'>
-					<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}" class="form_cancel">Cancel</a>
-				</li>
-			</ul>
-		</form>
-	</body>
-</html>
+{% extends 'formlayout.html' %}
+
+{% block form_title %}Edit Article{% endblock %}
+
+{% block form %}
+	<form action="{{url_for('editArticle', category_id = article.category_id, article_id = article.id)}}" method='post'>
+		<ul class="input_form">
+			<li>
+				<label>Title:</label>
+				<input type='text' size='50' name='title' placeholder='{{article.title}}' id='short_input'>
+			</li>
+			<li>
+				<label>Tagline:</label>
+				<input type='text' size='50' name='tagline' placeholder='{{article.tagline}}' id='short_input'>
+			</li>
+			<li>
+				<label>Text:</label>
+				<textarea name='text' class="field-textarea" placeholder='{{article.text}}'></textarea>
+			</li>
+			<li>
+				<label>Picture URL:</label>
+				<input type='text' size='200' name='picture' placeholder='{{article.picture}}'>
+			</li>
+			<li id='button_inputs'>
+				<input type='submit' value='Edit'>
+				<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}" class="form_cancel">Cancel</a>
+			</li>
+		</ul>
+	</form>
+{% endblock %}

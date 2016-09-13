@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>The Chronicle</title>
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
-	</head>
-	<body class='form_body'>
-		<h1 class="form_title">Delete Article</h1>
-		<form action="{{url_for('deleteArticle', category_id = article.category_id, article_id = article.id)}}" method='post'>
-			<ul class="input_form">
-				<label id='delete_label'>Are you sure you want to delete "{{article.title}}"?</label>
-				<li id='button_inputs'>
-					<input type='submit' value='Delete'>
-					<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}" class="form_cancel">Cancel</a>
-				</li>
-			</ul>
-		</form>
-	</body>
-</html>
+{% extends 'formlayout.html' %}
+
+{% block form_title %}Delete Article{% endblock %}
+
+{% block form %}
+	<form action="{{url_for('deleteArticle', category_id = article.category_id, article_id = article.id)}}" method='post'>
+		<ul class="input_form">
+			<label id='delete_label'>Are you sure you want to delete "{{article.title}}"?</label>
+			<li id='button_inputs'>
+				<input type='submit' value='Delete'>
+				<a href="{{url_for('showArticle', category_id = article.category_id, article_id = article.id)}}" class="form_cancel">Cancel</a>
+			</li>
+		</ul>
+	</form>
+{% endblock %}
